@@ -18,6 +18,8 @@ Once the terminal comes up, the user needs to invoke the ```hello``` command to 
 - commands are case sensitive in Linux
 - When one command terminates, the shell automatically displays the prompt for the next command without having to be triggered by the user 
 
+### References 
+None.
 
 ## Challenge 2: Intro to Arguments 
 Let's try something more complicated: a command with arguments, which is what we call additional data passed to the command. When you type a line of text and hit enter, the shell actually parses your input into a command and its arguments. The first word is the command, and the subsequent words are arguments. Observe:
@@ -47,6 +49,8 @@ Once the terminal comes up, the user needs to invoke the ```hello``` command wit
 - more than one argument can be passed to the echo command
 - When typing a line of commands, the shell parses the input into a command and its arguments, where the first word is the command and the subsequent words are the arguments  
 
+### References 
+None.
 
 ## Challenge 3: Command History 
 You're going to type a lot of commands, and typing everything from scratch can be annoying. Luckily, the shell saves a history of every command you invoke.
@@ -54,6 +58,9 @@ You can scroll through those saved commands with the up/down arrow keys, and we'
 
 ### Solve 
 **Flag:** 'pwn.college{UD563oUgSSyVhBEjGeXWou_nqTO.0lNzEzNxwCN3kjNzEzW}'
+
+### References 
+None.
 
 Use the up arrow to get the last entered command
 
