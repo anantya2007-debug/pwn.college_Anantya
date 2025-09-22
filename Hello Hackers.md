@@ -57,6 +57,6 @@ You can scroll through those saved commands with the up/down arrow keys, and we'
 
 Use the up arrow to get the last entered command
 
-###New Learnings 
+### New Learnings 
 - The shell saves its history of every command being invoked by the user  
 - The history can be scrolled through using the up/down keys  
