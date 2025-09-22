@@ -59,11 +59,11 @@ You can scroll through those saved commands with the up/down arrow keys, and we'
 ### Solve 
 **Flag:** 'pwn.college{UD563oUgSSyVhBEjGeXWou_nqTO.0lNzEzNxwCN3kjNzEzW}'
 
-### References 
-None.
-
 Use the up arrow to get the last entered command
 
 ### New Learnings 
 - The shell saves its history of every command being invoked by the user  
-- The history can be scrolled through using the up/down keys  
+- The history can be scrolled through using the up/down keys
+
+### References 
+None.
