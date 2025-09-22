@@ -1,6 +1,6 @@
-#Hello Hackers 
+# Hello Hackers 
 
-##Challenge 1: Intro to Commands
+## Challenge 1: Intro to Commands
 In this challenge, you will invoke your first command! When you type a command and hit enter, the command will be invoked, as so:
 ```bash
 hacker@dojo:~$ whoami
@@ -9,17 +9,17 @@ hacker@dojo:~$
 ```
 Here, the user executed the whoami command, which simply prints the username (hacker) to the terminal. When the command terminates, the shell once again displays the prompt, ready for the next command.
 
-###Solve 
+### Solve 
 **Flag:** 'pwn.college{kwAI5M9AitOsIfwUXU1M9V0nO7M.QX3YjM1wCN3kjNzEzW}'
 
 Once the terminal comes up, the user needs to invoke the ```hello``` command to print the flag 
 
-###New Learnings 
+### New Learnings 
 - commands are case sensitive in Linux
 - When one command terminates, the shell automatically displays the prompt for the next command without having to be triggered by the user 
 
 
-##Challenge 2: Intro to Arguments 
+## Challenge 2: Intro to Arguments 
 Let's try something more complicated: a command with arguments, which is what we call additional data passed to the command. When you type a line of text and hit enter, the shell actually parses your input into a command and its arguments. The first word is the command, and the subsequent words are arguments. Observe:
 
 ```bash
@@ -37,22 +37,22 @@ hacker@dojo:~$
 ```
 In this case, the command was echo, and Hello and Hackers! were the two arguments to echo. Simple!
 
-###Solve 
+### Solve 
 **Flag:** 'pwn.college{MmjXaxmpvYce_EUH3mRf3YSFsfJ.QX4YjM1wCN3kjNzEzW}'
 
 Once the terminal comes up, the user needs to invoke the ```hello``` command with the argument ```hackers```
 
-###New Learnings 
+### New Learnings 
 - ```echo``` is a command used to display the arguments passed to it, out on the terminal
 - more than one argument can be passed to the echo command
 - When typing a line of commands, the shell parses the input into a command and its arguments, where the first word is the command and the subsequent words are the arguments  
 
 
-##Challenge 3: Command History 
+## Challenge 3: Command History 
 You're going to type a lot of commands, and typing everything from scratch can be annoying. Luckily, the shell saves a history of every command you invoke.
 You can scroll through those saved commands with the up/down arrow keys, and we'll practice that in this challenge. 
 
-###Solve 
+### Solve 
 **Flag:** 'pwn.college{UD563oUgSSyVhBEjGeXWou_nqTO.0lNzEzNxwCN3kjNzEzW}'
 
 Use the up arrow to get the last entered command
