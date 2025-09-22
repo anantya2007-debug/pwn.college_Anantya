@@ -43,7 +43,7 @@ In this case, the command was echo, and Hello and Hackers! were the two argument
 Once the terminal comes up, the user needs to invoke the ```hello``` command with the argument ```hackers```
 
 ###New Learnings 
-- echo is a command used to display the arguments passed to it, out on the terminal
+- ```echo``` is a command used to display the arguments passed to it, out on the terminal
 - more than one argument can be passed to the echo command
 - When typing a line of commands, the shell parses the input into a command and its arguments, where the first word is the command and the subsequent words are the arguments  
 
