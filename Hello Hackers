@@ -11,3 +11,10 @@ Here, the user executed the whoami command, which simply prints the username (ha
 
 ###Solve 
 **Flag:** 'pwn.college{kwAI5M9AitOsIfwUXU1M9V0nO7M.QX3YjM1wCN3kjNzEzW}'
+
+Once the terminal comes up, the user needs to invoke the ```hello``` command to print the flag 
+
+###New Learnings 
+- commands are case sensitive in Linux
+- When one command terminates, the shell automatically displays the prompt for the next command without having to be triggered by the user 
+
