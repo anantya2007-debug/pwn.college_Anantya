@@ -31,3 +31,18 @@ The user invokes a program in a specific directory by providing the path ```/cha
 
 ### References 
 None.
+
+## Challenge 3: Position thy self
+
+
+## Challenge 4: Position elsewhere
+
+## Challenge 5: Position yet elsewhere
+
+## Challenge 6: implicit relative paths, from /
+
+## Challenge 7: explicit relative paths, from /
+
+## Challenge 8: implicit relative path
+
+## Challenge 9: home sweet home 
