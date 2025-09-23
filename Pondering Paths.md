@@ -33,7 +33,27 @@ The user invokes a program in a specific directory by providing the path ```/cha
 None.
 
 ## Challenge 3: Position thy self
+The Linux filesystem has tons of directories with tons of files. You can navigate around directories by using the cd (change directory) command and passing a path to it as an argument, as so:
 
+```bash
+hacker@dojo:~$ cd /some/new/directory
+hacker@dojo:/some/new/directory$
+```
+This affects the "current working directory" of your process (in this case, the bash shell). Each process has a directory in which it's currently hanging out. The reasons for this will become clear later in the module.
+
+As an aside, now you can see what the ```~``` was in the prompt! It shows the current path that your shell is located at.
+
+### My Solve 
+**Flag:** 'pwn.college{gRX60SCLNIb1tFrIpyNgXBuhI5m.QX2QTN0wCN3kjNzEzW}'
+
+The user has to input ```/challenge/run``` to get the current working directory. Using the ```cd``` command, we can change the directory to the preferred directory, which in this case is ```/usr/include```. The user can then invoke the program using ```/challenge/run```
+
+### New Learnings 
+- ```~``` is a shorthand which shows the current path that your shell is located at
+- ```cd /some/new/directory``` changes the shell’s current working directory to ```/some/new/directory```
+
+### References 
+None.
 
 ## Challenge 4: Position elsewhere
 
