@@ -7,4 +7,12 @@ You can invoke a program by providing its path on the command line. In this case
 ### My Solve 
 **Flag:** 'pwn.college{kRi64ECkOhpYY2xtvV6EW9eSIxC.QX4cTO0wCN3kjNzEzW}'
 
-The user invokes a program by providing the path /pwn on the command line 
+The user invokes a program by providing the path ```/pwn``` on the command line, i.e., when we type ```/pwn```, we are accessing the program pwn from the root directory   
+
+### New Learnings 
+- ```/``` is the root directory of a Linux filesystem
+- When the path starts with ```/``` and describes the path from the very root, it is called an **Absolute path**
+- When you type an absolute path like /pwn, the shell does not search the path and instead, directly tries to run that file.
+
+### References 
+None.
