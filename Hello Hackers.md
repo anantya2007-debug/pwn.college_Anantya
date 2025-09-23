@@ -9,7 +9,7 @@ hacker@dojo:~$
 ```
 Here, the user executed the whoami command, which simply prints the username (hacker) to the terminal. When the command terminates, the shell once again displays the prompt, ready for the next command.
 
-### Solve 
+### My Solve 
 **Flag:** 'pwn.college{kwAI5M9AitOsIfwUXU1M9V0nO7M.QX3YjM1wCN3kjNzEzW}'
 
 Once the terminal comes up, the user needs to invoke the ```hello``` command to print the flag 
@@ -39,7 +39,7 @@ hacker@dojo:~$
 ```
 In this case, the command was echo, and Hello and Hackers! were the two arguments to echo. Simple!
 
-### Solve 
+### My Solve 
 **Flag:** 'pwn.college{MmjXaxmpvYce_EUH3mRf3YSFsfJ.QX4YjM1wCN3kjNzEzW}'
 
 Once the terminal comes up, the user needs to invoke the ```hello``` command with the argument ```hackers```
@@ -56,7 +56,7 @@ None.
 You're going to type a lot of commands, and typing everything from scratch can be annoying. Luckily, the shell saves a history of every command you invoke.
 You can scroll through those saved commands with the up/down arrow keys, and we'll practice that in this challenge. 
 
-### Solve 
+### My Solve 
 **Flag:** 'pwn.college{UD563oUgSSyVhBEjGeXWou_nqTO.0lNzEzNxwCN3kjNzEzW}'
 
 Use the up arrow to get the last entered command
