@@ -149,7 +149,49 @@ The following relative paths are also all identical to each other:
 - ```challenge/.```
 Of course, if your current working directory is ```/```, the above relative paths are equivalent to the above absolute paths.
 
+### My Solve  
+**Flag:** 'pwn.college{E-dqCWisnz8v44qENb2fPxKOfPd.QXwUTN0wCN3kjNzEzW}'
+
+Using the ```cd``` command, we can change the current working directory to the preferred directory, which in this case is ```/```. The user can then invoke the program using ```./challenge/run``` where ```.```is used as a shortcut to the current directory 
+
+### New Learnings 
+- In Linux, every directory has two implicit entries used as reference in paths: ```.``` and ```..```
+- ```.``` is a shortcut for the current directory
+  
+
+### References 
+None.
+
+
 
 ## Challenge 8: implicit relative path
+In this level, we'll practice referring to paths using ```.``` a bit more. This challenge will need you to run it from the ```/challenge``` directory. Here, things get slightly tricky.
+
+Linux explicitly avoids automatically looking in the current directory when you provide a "naked" path. Consider the following:
+```bash
+hacker@dojo:~$ cd /challenge
+hacker@dojo:/challenge$ run
+```
+This will not invoke ```/challenge/run```. This is actually a safety measure: if Linux searched the current directory for programs every time you entered a naked path, you could accidentally execute programs in your current directory that happened to have the same names as core system utilities! As a result, the above commands will yield the following error:
+```bash
+bash: run: command not found
+```
+We'll explore the mechanisms behind this concept later, but in this challenge, we'll learn how to explicitly use relative paths to launch run in this scenario. 
+
+### My Solve  
+**Flag:** 'pwn.college{A_2tyl1dbj9-42H0dpt3gwobYlY.QXxUTN0wCN3kjNzEzW}'
+
+Using the ```cd``` command, we can change the current working directory to the preferred directory, which in this case is ```/challenge```. The user can then invoke the program using ```./run``` where ```.``` is used as a shortcut to the current directory
+
+### New Learnings 
+- ```.``` is a shortcut for the current directory
+- Linux explicitly avoids automatically looking in the current directory when provided with a "naked" path, thus avoiding accidentally executing programs in the current directory that happen to have the same names as core system utilities
+  
+
+### References 
+None.
+
+
+
 
 ## Challenge 9: home sweet home 
