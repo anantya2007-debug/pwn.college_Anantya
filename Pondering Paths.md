@@ -16,3 +16,18 @@ The user invokes a program by providing the path ```/pwn``` on the command line,
 
 ### References 
 None.
+
+## Challenge 2: Program and absolute paths
+Let's explore a slightly more complicated path! Except for in the previous level, challenges in pwn.college are in the challenge directory, and the challenge directory is, in turn, right in the root directory (/). The path to the challenge directory is, thus, /challenge. The name of the challenge program in this level is run, and it lives in the /challenge directory. Thus, the path to the run challenge program is /challenge/run.
+
+### My Solve 
+**Flag:** 'pwn.college{MfR3UBtHaBzBVFrpeWRvZ0pxMj3.QX1QTN0wCN3kjNzEzW}'
+
+The user invokes a program in a specific directory by providing the path ```/challenge/run``` where ```challenge``` is the directory and ```run``` is the program to be executed in the directory
+
+### New Learnings 
+- An absolute path is a path that starts with ```/``` and describes the location from the filesystem root
+- In the absolute path ```/challenge/run```, ```challenge``` is the directory while ```run``` is the executable in the mentioned directory 
+
+### References 
+None.
