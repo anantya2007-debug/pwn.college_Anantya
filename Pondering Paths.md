@@ -195,3 +195,43 @@ None.
 
 
 ## Challenge 9: home sweet home 
+Every user has a home directory, typically under ```/home``` in the filesystem. In the dojo, you are the hacker user, and your home directory is ```/home/hacker```. The home directory is typically where users store most of their personal files. As you make your way through pwn.college, this is where you'll store most of your solutions.
+
+Typically, your shell session will start with your home directory as your current working directory. Consider the initial prompt:
+```bash
+hacker@dojo:~$
+```
+The ```~``` in this prompt is the current working directory, with ```~``` being shorthand for ```/home/hacker```. Bash provides and uses this shorthand because, again, most of your time will be spent in your home directory. Thus, whenever bash sees ```~``` provided as the start of an argument in a way consistent with a path, it will expand it to your home directory. Consider:
+```bash
+hacker@dojo:~$ echo LOOK: ~
+LOOK: /home/hacker
+hacker@dojo:~$ cd /
+hacker@dojo:/$ cd ~
+hacker@dojo:~$ cd ~/asdf
+hacker@dojo:~/asdf$ cd ~/asdf
+hacker@dojo:~/asdf$ cd ~
+hacker@dojo:~$ cd /home/hacker/asdf
+hacker@dojo:~/asdf$
+```
+Note that the expansion of ```~``` is an absolute path, and only the leading ```~``` is expanded. This means, for example, that ~/~ will be expanded to /home/hacker/~ rather than /home/hacker/home/hacker.
+
+Fun fact: cd will use your home directory as the default destination:
+```bash
+hacker@dojo:~$ cd /tmp
+hacker@dojo:/tmp$ cd
+hacker@dojo:~$
+```
+
+### My Solve  
+**Flag:** 'pwn.college{UgFi9O-zjflFHE_zDxXmrJerg7u.QXzMDO0wCN3kjNzEzW}'
+
+User must input ```/challenge/run ~/c``` to write any file as an argument. Here, ```~/c``` is the argument passed to the program where ```c``` is a random argument name given by the user 
+
+### New Learnings 
+- The shell session typically starts with the home directory as the current working directory
+- A home directory is typically under ```/home``` in the filesystem
+- ```~/c``` is used to add a file ```c``` to the home directory which is refered to using ```~```
+  
+
+### References 
+None.
