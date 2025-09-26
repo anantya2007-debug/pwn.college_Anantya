@@ -141,9 +141,99 @@ The user has to input ```diff /challenge/decoys_only.txt /challenge/decoys_and_r
 None.
 
 ## Challenge 6: listing files
+So far, we've told you which files to interact with. But directories can have lots of files (and other directories) inside them, and we won't always be here to tell you their names. You'll need to learn to list their contents using the ```ls``` command!
+
+```ls``` will list files in all the directories provided to it as arguments, and in the current directory if no arguments are provided. Observe:
+```bash
+hacker@dojo:~$ ls /challenge
+run
+hacker@dojo:~$ ls
+Desktop    Downloads  Pictures  Templates
+Documents  Music      Public    Videos
+hacker@dojo:~$ ls /home/hacker
+Desktop    Downloads  Pictures  Templates
+Documents  Music      Public    Videos
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{UPN4LpsyTGXcHVu6oSYO_t98IxH.QX4IDO0wCN3kjNzEzW}' 
+
+The user has to use the ```ls``` command to find the files in ```/challenge```. Once retrieving the file name, the user can retrieve the flag by mentioning the path to the file, which in this case is ```/challenge/6663-renamed-run-24669```
+
+### New Learnings 
+- ```ls``` command is used to display the files in a specified directory
+- If the command is not specified with a directory, then it returns the files in the current directory 
+
+### References 
+None.
+ 
 ## Challenge 7: touching files 
+Of course, you can also create files! There are several ways to do this, but we'll look at a simple command here. You can create a new, blank file by touching it with the ```touch``` command:
+```bash
+hacker@dojo:~$ cd /tmp
+hacker@dojo:/tmp$ ls
+hacker@dojo:/tmp$ touch pwnfile
+hacker@dojo:/tmp$ ls
+pwnfile
+hacker@dojo:/tmp$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{kd_P5OuZUVl1NN7g5YB_9olzoBo.QXwMDO0wCN3kjNzEzW}'
+
+The user must first change the current directory to the one in which we are creating the file using ```cd /tmp```. Now,, using the ```touch``` command, the user must create two new and empty files called pwn and college. This is done using ```touch pwn``` and ```touch college``` respectively. ```/challenge/run``` is then run to get the flag.
+
+### New Learnings 
+- ```touch``` command is used to create new and blank files
+- to create the file, you must first change the current directory to the directory where you want the file to be created 
+
+### References 
+None.
+
+
 ## Challenge 8: removing files 
+Files are all around you. Like candy wrappers, there'll eventually be too many of them. In this level, we'll learn to clean up!
+
+In Linux, you remove files with the ```rm``` command, as so:
+```bash
+hacker@dojo:~$ touch PWN
+hacker@dojo:~$ touch COLLEGE
+hacker@dojo:~$ ls
+COLLEGE     PWN
+hacker@dojo:~$ rm PWN
+hacker@dojo:~$ ls
+COLLEGE
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{IhWk-UkBEpyHD4U5Y3Dy8NsmR6b.QX2kDM1wCN3kjNzEzW}'
+
+The user must first create a file called delete_me using the command ```touch delete_me```. This file can then be deleted using the ```rm delete_me``` command and further can be checked wether or not it has been deleted using the ```ls``` command. The user can then run ```/challenge/check``` to retrieve the flag.
+
+### New Learnings 
+- ```rm``` command is used to delete a specific file from a directory
+- the file to be removed is given as an argument to the ```rm``` command  
+
+### References 
+None.
+
+
 ## Challenge 9: moving files 
+You can also move files around with the ```mv``` command. The usage is simple:
+```bash
+hacker@dojo:~$ ls
+my-file
+hacker@dojo:~$ cat my-file
+PWN!
+hacker@dojo:~$ mv my-file your-file
+hacker@dojo:~$ ls
+your-file
+hacker@dojo:~$ cat your-file
+PWN!
+hacker@dojo:~$
+```
 ## Challenge 10: hidden files
 ## Challenge 11: An Epic Filesystem Quest 
 ## Challenge 12: making directories 
