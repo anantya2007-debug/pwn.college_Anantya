@@ -299,5 +299,86 @@ The user must follow a series of steps to open specified directories and files w
 None.
 
 ## Challenge 12: making directories 
+We can create files. How about directories? You make directories using the mkdir command. Then you can stick files in there!
+
+Watch:
+```bash
+hacker@dojo:~$ cd /tmp
+hacker@dojo:/tmp$ ls
+hacker@dojo:/tmp$ ls
+hacker@dojo:/tmp$ mkdir my_directory
+hacker@dojo:/tmp$ ls
+my_directory
+hacker@dojo:/tmp$ cd my_directory
+hacker@dojo:/tmp/my_directory$ touch my_file
+hacker@dojo:/tmp/my_directory$ ls
+my_file
+hacker@dojo:/tmp/my_directory$ ls /tmp/my_directory/my_file
+/tmp/my_directory/my_file
+hacker@dojo:/tmp/my_directory$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{8DUm30D-AB9gnFZv6sijOcGn6cY.QXxMDO0wCN3kjNzEzW}'
+
+The user must create a directory using ```mkdir /tmp/pwn``` where ```/tmp/pwn``` is the name of the directory being created. Then a file is created in this directory using ```touch college```. The user can then run ```/challenge/check``` to retrieve the flag.
+
+### New Learnings 
+- ```touch``` is used to create files, whereas ```mkdir``` is used to create directories 
+
+### References 
+None.
+
 ## Challenge 13: finding files 
+So now we know how to list, read, and create files. But how do we find them? We use the ```find``` command!
+
+The ```find``` command takes optional arguments describing the search criteria and the search location. If you don't specify a search criteria, ```find``` matches every file. If you don't specify a search location, find uses the current working directory (.). For example:
+```bash
+hacker@dojo:~$ mkdir my_directory
+hacker@dojo:~$ mkdir my_directory/my_subdirectory
+hacker@dojo:~$ touch my_directory/my_file
+hacker@dojo:~$ touch my_directory/my_subdirectory/my_subfile
+hacker@dojo:~$ find
+.
+./my_directory
+./my_directory/my_subdirectory
+./my_directory/my_subdirectory/my_subfile
+./my_directory/my_file
+hacker@dojo:~$
+```
+And when specifying the search location:
+```bash
+hacker@dojo:~$ find my_directory/my_subdirectory
+my_directory/my_subdirectory
+my_directory/my_subdirectory/my_subfile
+hacker@dojo:~$
+```
+And, of course, we can specify the criteria! For example, here, we filter by name:
+```bash
+hacker@dojo:~$ find -name my_subfile
+./my_directory/my_subdirectory/my_subfile
+hacker@dojo:~$ find -name my_subdirectory
+./my_directory/my_subdirectory
+hacker@dojo:~$
+```
+You can search the whole filesystem if you want!
+```bash
+hacker@dojo:~$ find / -name hacker
+/home/hacker
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{st0K0vg2R6eUGyhYE17QWph_sxw.QXyMDO0wCN3kjNzEzW}'
+
+The user must enter the command ```find / -type f -name flag``` to find the file named ```flag```. As this file name is found in multiple directories, we will only ```cat``` the accessible file from which we will obtain the flag.  
+
+### New Learnings 
+- ```find``` command is used to find a specific file in a specified directory
+- If not provided a directory as an argument, it just searched for the file in the current directory
+- If a search criterion is not specified for it, then it matches every file present in the directory 
+
+### References 
+[https://www.geeksforgeeks.org/linux-unix/find-command-in-linux-with-examples/](url)
+
 ## Challenge 14: linking files
