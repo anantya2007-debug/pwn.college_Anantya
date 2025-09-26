@@ -234,8 +234,70 @@ hacker@dojo:~$ cat your-file
 PWN!
 hacker@dojo:~$
 ```
+
+### My Solve 
+**Flag:** 'pwn.college{Q3mM4h5tfL7CPFmEwKWXqx7MZAD.0VOxEzNxwCN3kjNzEzW}'
+
+The user must input ```mv /flag /tmp/hack-the-planet``` to the terminal in order to move the files from ```/flag``` to ```/tmp/hack-the-planet```. The user can then run ```/challenge/check``` to retrieve the flag.
+
+### New Learnings 
+- ```mv``` command is used to move files from one place to another
+- the frist argument given to ```mv``` is the file to be moved while the second argument is where the file should be mvoed to  
+
+### References 
+None.
+
 ## Challenge 10: hidden files
+Interestingly, ```ls``` doesn't list all the files by default. Linux has a convention where files that start with a ```.``` don't show up by default in ```ls``` and in a few other contexts. To view them with ```ls```, you need to invoke ```ls``` with the ```-a``` flag, as so:
+
+```bash
+hacker@dojo:~$ touch pwn
+hacker@dojo:~$ touch .college
+hacker@dojo:~$ ls
+pwn
+hacker@dojo:~$ ls -a
+.college	pwn
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{Mu0DGRf4Yal9NwhCZnUsR8WeQpj.QXwUDO0wCN3kjNzEzW}'
+
+The user must first use the ```ls -a /``` command to get the naem of the hidden lists in the directory ```/```. On finding the name of the file, the flag inside of it is found by using the command ```cat /.flag-193801430222796``` where ```.flag-193801430222796``` is the name of the hidden file.
+
+### New Learnings 
+- Certain files can be hidden in Linux. For example, file names starting with ```.``` will not show up when the ```ls``` command is used by itself
+- to see these hidden files, you must use the command  ```ls -a``` 
+
+### References 
+None.
+
 ## Challenge 11: An Epic Filesystem Quest 
+With your knowledge of ```cd```, ```ls```, and ```cat```, we're ready to play a little game!
+
+We'll start it out in ```/```. Normally:
+```bash
+hacker@dojo:~$ cd /
+hacker@dojo:/$ ls
+bin   challenge  etc   home  lib32  libx32  mnt  proc  run   srv  tmp  var
+boot  dev        flag  lib   lib64  media   opt  root  sbin  sys  usr
+```
+That's a lot of contents! One day, you will be quite familiar with them, but already, you might recognize the flag file and the challenge directory.
+
+### My Solve 
+**Flag:** 'pwn.college{0h0KyiIv0P0JzEa-SjDfZLAJviW.QX5IDO0wCN3kjNzEzW}'
+
+The user must follow a series of steps to open specified directories and files within them to finally retrieve the flag from one of the files in a directory. 
+
+### New Learnings 
+- ```cd``` command is used to change the current directory of a shell
+- ```ls``` command is used to list the files in a specific directory
+- ```ls -a``` is used to list the hidden files in a directory
+- ```cat``` is used to return the contents of a specified file 
+
+### References 
+None.
+
 ## Challenge 12: making directories 
 ## Challenge 13: finding files 
 ## Challenge 14: linking files
