@@ -382,3 +382,43 @@ The user must enter the command ```find / -type f -name flag``` to find the file
 [https://www.geeksforgeeks.org/linux-unix/find-command-in-linux-with-examples/](url)
 
 ## Challenge 14: linking files
+If you use Linux (or computers) for any reasonable length of time to do any real work, you will eventually run into some variant of the following situation: you want two programs to access the same data, but the programs expect that data to be in two different locations. Luckily, Linux provides a solution to this quandary: links.
+
+Links come in two flavors: hard and soft (also known as symbolic) links. We'll differentiate the two with an analogy:
+
+- A hard link is when you address your apartment using multiple addresses that all lead directly to the same place (e.g., Apt 2 vs Unit 2).
+- A soft link is when you move apartments and have the postal service automatically forward your mail from your old place to your new place.
+
+In this challenge, we will learn about symbolic links (also known as symlinks). Symbolic links are created with the ln command with the -s argument, like so:
+```bash 
+hacker@dojo:~$ cat /tmp/myfile
+This is my file!
+hacker@dojo:~$ ln -s /tmp/myfile /home/hacker/ourfile
+hacker@dojo:~$ cat ~/ourfile
+This is my file!
+hacker@dojo:~$
+```
+A symlink can be identified as such with a few methods. For example, the file command, which takes a filename and tells you what type of file it is, will recognize symlinks:
+```bash
+hacker@dojo:~$ file /tmp/myfile
+/tmp/myfile: ASCII text
+hacker@dojo:~$ file ~/ourfile
+/home/hacker/ourfile: symbolic link to /tmp/myfile
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{EcylzASY3C8vJ8-nsbifW8ZaQ61.QX5ETN1wCN3kjNzEzW}'
+
+Using the command ```ln -s /flag ~/not-the-flag```, the user creates a new filesystem entry ```/home/hacker/not-the-flag ``` whose contents are the text ```/flag``` resulting in ``` /home/hacker/not-the-flag``` being a symlink. We then run this program using ```/challenge/catflag``` to retrieve the flag.
+
+### New Learnings 
+- Links are used so one piece of data can be referenced from multiple locations
+- Two kinds of links: hard links and soft/symbolic links (symlinks)
+          1) Hard-link analogy: multiple addresses that all point directly to the same apartment (identical access).
+          2) Soft-link analogy: postal forwarding from your old address to your new one (the link points to a pathname)
+- you can create a symlink with ```ln -s <target> <link>```
+- you can identify symlinks with ```ls -l```
+
+### References 
+None.
