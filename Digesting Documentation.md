@@ -74,5 +74,14 @@ The user must input ```man challenge``` to get the manual of the ```challenge```
 None.
 
 ## Challenge 5: Searching for Manuals 
+This level is tricky: it hides the manpage for the challenge by randomizing its name. Luckily, all of the manpages are gathered in a searchable database, so you'll be able to search the man page database to find the hidden challenge man page! To figure out how to search for the right manpage, read the ```man``` page manpage by doing: ```man man```
+
+### My Solve 
+**Flag:** 'pwn.college{EX-c8IVc3JRcmn48UdZ73uzUGNw.QX2EDO0wCN3kjNzEzW}'
+
+### New Learnings
+
+### References
+[https://labex.io/questions/what-is-the-man-command-953914](url)
 ## Challenge 6: Helpful Programs 
 ## Challenge 7: Help for Builtins 
