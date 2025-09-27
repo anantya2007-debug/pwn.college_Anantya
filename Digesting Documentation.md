@@ -103,3 +103,30 @@ The user must use ```/challenge/challenge --help``` to know how to run the ```/c
 None.
 
 ## Challenge 7: Help for Builtins 
+Some commands, rather than being programs with man pages and help options, are built into the shell itself. These are called builtins. Builtins are invoked just like commands, but the shell handles them internally instead of launching other programs. You can get a list of shell builtins by running the builtin ```help```, as so:
+```bash
+hacker@dojo:~$ help
+```
+You can get help on a specific one by passing it to the ```help``` builtin. Let's look at a builtin that we've already used earlier, ```cd```!
+```bash
+hacker@dojo:~$ help cd
+cd: cd [-L|[-P [-e]] [-@]] [dir]
+    Change the shell working directory.
+    
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+...
+```
+
+### My Solve 
+**Flag:** 'pwn.college{Uj9JOoV8Y7yLVaiiUymWbM6_6TF.QX0ETO0wCN3kjNzEzW}'
+
+The user must input ```help challenge``` to get the specific argument and secret value, which in this case is ```challenge --secret Uj9JOoV8```
+
+### New Learnings 
+- builtins are programs that are directly built into the shell itself
+- The shell will handle these programs internally instead of launching other programs
+- ```help``` is run to get the list of shell builtins 
+
+### References 
+None.
