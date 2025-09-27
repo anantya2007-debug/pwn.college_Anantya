@@ -79,9 +79,27 @@ This level is tricky: it hides the manpage for the challenge by randomizing its 
 ### My Solve 
 **Flag:** 'pwn.college{EX-c8IVc3JRcmn48UdZ73uzUGNw.QX2EDO0wCN3kjNzEzW}'
 
+The user must use the ```man man``` command to view the manpage of the ```man``` command itself. Using the ```man -k challenge``` command, we can then search for the hidden manpage which in this case is ```cccmnduzww```
+
 ### New Learnings
+- ```man -k``` searches the index, which is plain text and includes descriptions
+- ```/``` inside a manpage searches rendered text
 
 ### References
 [https://labex.io/questions/what-is-the-man-command-953914](url)
-## Challenge 6: Helpful Programs 
+
+## Challenge 6: Helpful Programs
+Some programs don't have a man page, but might tell you how to run them if invoked with a special argument. Usually, this argument is ```--help```, but it can often be ```-h``` or, in rare cases, ```-?```, ```help```, or other esoteric values like ```/?``` (though that latter is more frequently encountered on Windows).
+
+### My Solve 
+**Flag:** 'pwn.college{cRJse-SIbhj0xJOAjVNdmP5bC40.QX3IDO0wCN3kjNzEzW}'
+
+The user must use ```/challenge/challenge --help``` to know how to run the ```/challenge/challenge``` program with special arguments. From this, you will use ```/challenge/challenge -p``` to get a secret value, in this case 54, which you then input as ```/challenge/challenge -g 54``` to retrieve the flag 
+
+### New Learnings 
+- You can use ```--help``` to tell you how to run a program with special commands in the scenario that the program does not have a manpage 
+
+### References 
+None.
+
 ## Challenge 7: Help for Builtins 
