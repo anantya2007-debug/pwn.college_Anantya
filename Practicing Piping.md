@@ -40,6 +40,18 @@ The user must input ```/challenge/run > myflag``` to redirect ```/challenge/run`
 None.
 
 ## Challenge 3: Appending output 
+A common use-case of output redirection is to save off some command results for later analysis. Often times, you want to do this in aggregate: run a bunch of commands, save their output, and ```grep``` through it later. In this case, you might want all that output to keep appending to the same file, but ```>``` will create a new output file every time, deleting the old contents.
+
+You can redirect input in append mode using ```>>``` instead of ```>```, as so:
+```bash
+hacker@dojo:~$ echo pwn > outfile
+hacker@dojo:~$ echo college >> outfile
+hacker@dojo:~$ cat outfile
+pwn
+college
+hacker@dojo:$
+```
+
 ## Challenge 4: Redirecting errors
 ## Challenge 5: Redirecting input 
 ## Challenge 6: Grepping stored results 
