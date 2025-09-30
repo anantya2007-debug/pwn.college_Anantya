@@ -108,4 +108,77 @@ The user has to input ```/challenge/pwn | head -n 7 | /challenge/college``` to g
 None.
 
 ## Challenge 5: Extracting specific sections of text 
+Sometimes, you want to grab specific columns of data, such as the first column, the third column, or the 42nd column. For this, there's the ```cut``` command.
+
+For example, imagine that you have the following data file:
+```bash
+hacker@dojo:~$ cat scores.txt
+hacker 78 99 67
+root 92 43 89
+hacker@dojo:~$
+```
+You could use cut to extract specific columns:
+```bash
+hacker@dojo:~$ cut -d " " -f 1 scores.txt
+hacker
+root
+hacker@dojo:~$ cut -d " " -f 2 scores.txt
+78
+92
+hacker@dojo:~$ cut -d " " -f 3 scores.txt
+99
+43
+hacker@dojo:~$
+```
+The ```-d``` argument specifies the column delimiter (how columns are separated). In this case, it's a **space character**. Of course, it has to be in quotes here so that the shell knows that the space is an argument rather than a space separating other arguments! The ```-f``` argument specifies the field number (which column to extract).
+
+### My Solve 
+**Flag:** 'pwn.college{YONfYxW9dmxYPpKU3lkuRIdt5Q9.01NxEzNxwCN3kjNzEzW}'
+
+The user has to input ```/challenge/run | cut -d' ' -f 2 | tr -d '\n'``` to retreive the second column of ```/challenge/run``` using ```cut``` and then remove the new lines using ```tr```
+
+### New Learnings 
+- ```cut``` command is used to grab specific columns of data
+- The ```-d``` argument specifies the column delimiter i.e., how columns are separated (the column delimiter should be placed inside ```" "```
+- The ```-f``` argument specifies the field number i.e., which column to extract
+
+### References 
+None.
+
 ## Challenge 6: Sorting data 
+Files (or output lines of commands) aren't always in the order you need them! The ```sort``` command helps you organize data. It reads lines from input (or files) and outputs them in sorted order:
+```bash
+hacker@dojo:~$ cat names.txt
+  hack
+  the
+  planet
+  with
+  pwn
+  college
+hacker@dojo:~$ sort names.txt
+  college
+  hack
+  planet
+  pwn
+  the
+  with
+hacker@dojo:~$
+```
+By default, sort orders lines alphabetically. Arguments can change this:
+
+- -r: reverse order (Z to A)
+- -n: numeric sort (for numbers)
+- -u: unique lines only (remove duplicates)
+- -R: random order!
+
+### New Learnings 
+- ```sort``` command is used to sort the input of files
+- by default, it sorts it in alphabetical order
+- arguments can be used to specify the order such as
+   1. -r: reverse order (Z to A)
+   2. -n: numeric sort (for numbers)
+   3. -u: unique lines only (remove duplicates)
+   4. -R: random order!
+
+### References 
+None.
