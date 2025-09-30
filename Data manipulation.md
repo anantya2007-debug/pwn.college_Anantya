@@ -171,6 +171,11 @@ By default, sort orders lines alphabetically. Arguments can change this:
 - -u: unique lines only (remove duplicates)
 - -R: random order!
 
+### My Solve 
+**Flag:** 'pwn.college{Ewfqtg-W-WIGtrYEfjZX3Cagfd0.0FM0MDOxwCN3kjNzEzW}'
+
+The user must input ```sort /challenge/flags.txt``` to sort the lines in ```/challenge/flags/txt```
+
 ### New Learnings 
 - ```sort``` command is used to sort the input of files
 - by default, it sorts it in alphabetical order
