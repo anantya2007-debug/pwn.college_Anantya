@@ -338,3 +338,48 @@ The user must input ```/challenge/hack > >( /challenge/planet ) 2> >( /challenge
 None.
 
 ## Challenge 14: Named pipes 
+You've learned about pipes using ```|```, and you've seen that process substitution creates temporary named pipes (like ```/dev/fd/63```). You can also create your own persistent named pipes that stick around on the filesystem! These are called FIFOs, which stands for First (byte) In, First (byte) Out.
+
+You create a FIFO using the ```mkfifo``` command:
+```bash
+hacker@dojo:~$ mkfifo my_pipe
+hacker@dojo:~$ ls -l my_pipe
+prw-r--r-- 1 hacker hacker 0 Jan 1 12:00 my_pipe
+-rw-r--r-- 1 hacker hacker 0 Jan 1 12:00 some_file
+hacker@dojo:~$
+```
+Notice the p at the beginning of the permissions - that indicates it's a pipe! That's markedly different than the - that's at the beginning of normal files, such as some_file in the above example.
+
+Unlike the automatic named pipes from process substitution:
+
+You control where FIFOs are created
+They persist until you delete them
+Any process can write to them by path (e.g., echo hi > my_pipe)
+You can see them with ```ls``` and examine them like files
+One problem with FIFOs is that they'll "block" any operations on them until both the read side of the pipe and the write side of the pipe are ready. For example, consider this:
+```bash
+hacker@dojo:~$ mkfifo myfifo
+hacker@dojo:~$ echo pwn > myfifo
+```
+To service ```echo pwn > myfifo```, bash will open the myfifo file in write mode. However, this operation will hang until something also opens the file in read mode (thus completing the pipe). That can be in a different console:
+```bash
+hacker@dojo:~$ cat myfifo
+pwn
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{AJYnonP_wuqp7DXM0UVlogc7ESw.01MzMDOxwCN3kjNzEzW}'
+
+The user must input the command ```mkfifp /tmp/flag_fifo``` to create the file. The we can run ```cat /tmp/flag_fifo & /challenge/run > /tmp/flag_fifo``` to retrieve the flag. The two steps must be done simultaneously as operations on FIFOs will *block* until both the read side and the write side are open.
+
+### New Learnings 
+- FIFO stands for First (byte) In, First (byte) Out
+- You can create a FIFO using the ```mkfifo``` command
+- p at the beginning of the permissions indicates it's a pipe
+- You can examine a FIFO like you would a normal file
+- FIFOs pass data directly between processes in memory therefore, nothing is saved to disk
+
+### References 
+None.
+
