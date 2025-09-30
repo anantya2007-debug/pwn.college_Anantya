@@ -71,5 +71,41 @@ The user must input ```/challenge/run | tr -d "\n"``` to delete the newlines in 
 None.
 
 ## Challenge 4: Extracting the first lines with head 
+In your Linux journey, you'll experience situations where you need to grab just the early output of very verbose programs. For this, you'll reach for ```head```! The ```head``` command is used to display the first few lines of its input:
+```bash
+hacker@dojo:~$ cat /something/very/long | head
+this
+is
+just
+the
+first
+ten
+lines
+of
+the
+file
+hacker@dojo:~$
+```
+By default, it shows the first 10 lines, but you can control this with the ```-n``` option:
+```bash
+hacker@dojo:~$ cat /something/very/long | head -n 2
+this
+is
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{cgUdZSEQ46QZNYGfDS4BHN4AL3F.0lNxEzNxwCN3kjNzEzW}'
+
+The user has to input ```/challenge/pwn | head -n 7 | /challenge/college``` to grab just the first 7 lines of /challenge/pwn and then pipe them onwards to ```/challenge/college```
+
+### New Learnings 
+- ```head``` command is used to print the initial lines of an input
+- by default, it usually showes the first 10 lines
+- the number of line to be displayed can be controlled using ```head -n 2``` for example 
+
+### References 
+None.
+
 ## Challenge 5: Extracting specific sections of text 
 ## Challenge 6: Sorting data 
