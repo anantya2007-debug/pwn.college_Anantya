@@ -263,6 +263,78 @@ pwn
 college
 hacker@dojo:~$
 ```
+
+### My Solve 
+**Flag:** 'pwn.college{EZ_e2ly27mSbQSTAWwS6cQ1FUiF.0lNwMDOxwCN3kjNzEzW}'
+
+The user must input the command ```diff <(/challenge/print_decoys) <(/challenge/print_decoys_and_flag)``` to retrieve the flag
+
+### New Learnings 
+- When ```<(command)``` is used, the shell runs command and replaces ```<(command)``` with a pathname that refers to a named pipe connected to that command’s stdout.
+- You can use process substitution to compare outputs without intermediate files (e.g. ```diff <(command1) <(command2)``` )
+  
+### References 
+None.
+
+
 ## Challenge 12: Writing to multiple programs 
+You can also use process substitution for writing to commands!
+
+You can duplicate data to two files with tee:
+```bash
+hacker@dojo:~$ echo HACK | tee THE > PLANET
+hacker@dojo:~$ cat THE
+HACK
+hacker@dojo:~$ cat PLANET
+HACK
+hacker@dojo:~$
+```
+And you've used tee to duplicate data to a file and a command:
+```bash
+hacker@dojo:~$ echo HACK | tee THE | cat
+HACK
+hacker@dojo:~$ cat THE
+HACK
+hacker@dojo:~$
+```
+But wait! You just learned that bash can make commands look like files using process substitution! For writing to a command (output process substitution), use >(command). If you write an argument of >(rev), bash will run the rev command (this command reads data from standard input, reverses its order, and writes it to standard output!), but hook up its input to a temporary named pipe file. When commands write to this file, the data goes to the standard input of the command:
+```bash
+hacker@dojo:~$ echo HACK | rev
+KCAH
+hacker@dojo:~$ echo HACK | tee >(rev)
+HACK
+KCAH
+```
+
+### My Solve 
+**Flag:** 'pwn.college{gQKuk1A7xdvAXF6VhaJQM_mFryy.QXwgDN1wCN3kjNzEzW}'
+
+The user must input ```/challenge/hack | tee >( /challenge/the ) >( /challenge/planet )``` to retrieve the flag. This command is essentially just sending the output of ```/challenge/hack``` to both ```/challenge/the``` and ```/challenge/planet``` at the same time
+
+### New Learnings 
+- ```>(command)``` writes to command like it’s a file.
+- Combined with ```tee```, you can duplicate a command’s output to multiple commands or files at once without creating temporary files.
+  
+### References 
+None.
+
 ## Challenge 13: Split-piping stderr and stdout 
+Now, let's put your knowledge together. You must master the ultimate piping task: redirect stdout to one program and stderr to another.
+
+The challenge here, of course, is that the ```|``` operator links the stdout of the left command with the stdin of the right command. Of course, you've used ```2>&1``` to redirect stderr into stdout and, thus, pipe stderr over, but this then mixes stderr and stdout. How to keep it unmixed?
+
+You will need to combine your knowledge of ```>()```, ```2>```, and ```|```. How to do it is a task I'll leave to you.
+
+### My Solve 
+**Flag:**  'pwn.college{8uR3uKS62QCGpz-IbUwyV8nvDol.QXxQDM2wCN3kjNzEzW}'
+
+The user must input ```/challenge/hack > >( /challenge/planet ) 2> >( /challenge/the )``` where  ```>( /challenge/planet )``` sends stdout to it and ```2> >( /challenge/the )``` sends stderr to it.
+
+### New Learnings 
+- ```>``` is used to send stdout to a file
+- ```2>``` is used to send stderr to a file
+  
+### References 
+None.
+
 ## Challenge 14: Named pipes 
