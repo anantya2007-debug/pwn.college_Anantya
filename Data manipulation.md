@@ -19,7 +19,7 @@ hacker@dojo:~$
 ### My Solve 
 **Flag:** 'pwn.college{UMKM7o-PsOcwhFWytVTmXbAkvnV.01MxEzNxwCN3kjNzEzW}'
 
-The user must input ```/challenge/run | tr '[A-Z][a-z]' '[a-z][A-Z]'``` to retreive the flag 
+The user must input ```/challenge/run | tr '[A-Z][a-z]' '[a-z][A-Z]'``` to retrieve the flag 
 
 ### New Learnings 
 - ```tr``` command is used to translate characters it receives over standard input and prints them to standard output
@@ -28,3 +28,48 @@ The user must input ```/challenge/run | tr '[A-Z][a-z]' '[a-z][A-Z]'``` to retre
 
 ### References 
 None.
+
+## Challenge 2: Deleting characters
+```tr``` can also translate characters to nothing (i.e., delete them). This is done via a ```-d``` flag and an argument of what characters to delete:
+```bash
+hacker@dojo:~$ echo PAWN | tr -d A
+PWN
+hacker@dojo:~$
+```
+
+### My Solve 
+**Flag:** 'pwn.college{Iz4AgpG9SDNCaJZSnNdKtScUvYA.0FNxEzNxwCN3kjNzEzW}'
+
+The user must input ```/challenge/run | tr -d ^%``` to delete the characters ```^``` and ```%``` from the flag 
+
+### New Learnings 
+- You can delete characters by using a ```-d``` flag along with the ```tr``` command as so, ```PAWN | tr -d A```
+
+### References 
+None.
+
+## Challenge 3: Deleting newlines 
+A common class of characters to remove is a line separator. This happens when you have a stream of data that you want to turn into a single line for further processing. You can specify newlines almost like any other character, by escaping them:
+```bash
+hacker@dojo:~$ echo "hello_world!" | tr _ "\n"
+hello
+world!
+hacker@dojo:~$
+```
+Here, the backslash (```\```) signifies that the character that follows it is a standin for a character that's hard to input into the shell normally. The newline, of course, is hard to input because when you typically hit Enter, you'll run the command itself. ```\n``` is a standin for this newline, and it must be in quotes to prevent the shell interpreter itself from trying to interpret it and pass it to ```tr``` instead.
+
+### My Solve 
+**Flag:** 'pwn.college{EEovuqWs30-3N8vHPAJETwyV2yb.0VNxEzNxwCN3kjNzEzW}'
+
+The user must input ```/challenge/run | tr -d "\n"``` to delete the newlines in order to print the flag 
+
+### New Learnings 
+- ```\n``` is a standin for a newline and can be used as, ``` tr _ "\n"```, to add a new line or ```tr -d "\n"```, to remove a new line 
+- ```\n``` must be in quotes to prevent the shell interpreter from trying to interpret it and pass it to ```tr``` instead
+
+### References 
+None.
+
+## Challenge 4: Extracting the first lines with head 
+## Challenge 5: Extracting specific sections of text 
+## Challenge 6: Sorting data 
