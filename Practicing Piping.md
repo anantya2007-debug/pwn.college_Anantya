@@ -371,7 +371,7 @@ hacker@dojo:~$
 ### My Solve 
 **Flag:** 'pwn.college{AJYnonP_wuqp7DXM0UVlogc7ESw.01MzMDOxwCN3kjNzEzW}'
 
-The user must input the command ```mkfifp /tmp/flag_fifo``` to create the file. The we can run ```cat /tmp/flag_fifo & /challenge/run > /tmp/flag_fifo``` to retrieve the flag. The two steps must be done simultaneously as operations on FIFOs will *block* until both the read side and the write side are open.
+The user must input the command ```mkfifo /tmp/flag_fifo``` to create the file. The we can run ```cat /tmp/flag_fifo & /challenge/run > /tmp/flag_fifo``` to retrieve the flag. The two steps must be done simultaneously as operations on FIFOs will *block* until both the read side and the write side are open.
 
 ### New Learnings 
 - FIFO stands for First (byte) In, First (byte) Out
