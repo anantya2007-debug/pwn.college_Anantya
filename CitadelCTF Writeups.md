@@ -225,6 +225,183 @@ They leave nothing but a single image, a relic carrying his final secret. Hidden
 ```
 citadel{th1s_ch4ll3ng3_1s_f0r_th4t_0n3_ex1ft00l_4nd_b1nw4lk_enthus14st}
 ```
+
+# Randomly Accessed Memories
+
+## Description: 
+clone it, pull it, reset it, stage it,
+commit, push it, fork, rebase it,
+merge it, branch it, tag it, log it,
+add it, stash it, diff, untrack it.
+
+On your ascent to this floor, you hear these fragments being played back 
+
+```sh
+You look around and discover a chamber containing a vast archive of Daft Punk’s music, intertwined with cryptic commits left behind by other musicians. They seem ordinary at first glance, but not everything in the history is what it seems.
+```
+
+Challenge: https://github.com/evilcryptonite/daft-punk-archive
+
+## Writeup:
+
+- `git clone https://github.com/evilcryptonite/daft-punk-archive` to clone the repository as mentioned in the challenge.
+- `cd daft-punk-archive` to change the current working directory to it.
+- `not eveyrthing in the history is what it seems` implies that something is hidden so check the past commits for the hidden information.
+- `git log --oneline` shows all the previous commits.
+  ```sh
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % git log --oneline
+  168947c (HEAD -> main, origin/main, origin/HEAD) Routine update #300
+  778eece Routine update #299
+  6246c98 Routine update #298
+  726a3bf Routine update #297
+  f15c7e5 Routine update #296
+  589a485 Routine update #295
+  5bbbf2e Routine update #294
+  421e1ab Routine update #293
+  6cf2ca4 Routine update #292
+  7d22c4b Routine update #291
+  804adf1 Routine update #290
+  b788a15 Routine update #289
+  8f06b9a Routine update #288
+  f096064 Routine update #287
+  b5f3b1c Routine update #286
+  1cffc9e Routine update #285
+  2e3d91d Routine update #284
+  e252558 Routine update #283
+  451a2f9 Routine update #282
+  7e103ab Routine update #281
+  8d1aac6 Routine update #280
+  18f8435 Remove secret chunk 3 file (history-only)
+  79af115 Add secret chunk 3 (base64) [commit 279]
+  168947c (HEAD -> main, origin/main, origin/HEAD) Routine update #300
+  778eece Routine update #299
+  6246c98 Routine update #298
+  726a3bf Routine update #297
+  f15c7e5 Routine update #296
+  589a485 Routine update #295
+  5bbbf2e Routine update #294
+  421e1ab Routine update #293
+  6cf2ca4 Routine update #292
+  7d22c4b Routine update #291
+  804adf1 Routine update #290
+  b788a15 Routine update #289
+  8f06b9a Routine update #288
+  f096064 Routine update #287
+  b5f3b1c Routine update #286
+  1cffc9e Routine update #285
+  2e3d91d Routine update #284
+  e252558 Routine update #283
+  451a2f9 Routine update #282
+  7e103ab Routine update #281
+  8d1aac6 Routine update #280
+  18f8435 Remove secret chunk 3 file (history-only)
+  79af115 Add secret chunk 3 (base64) [commit 279]
+  df7c6e6 Routine update #278
+  c2bc017 Routine update #277
+  f5fe582 Routine update #276
+  e50c0ac Routine update #275
+  2efae35 Routine update #274
+  7349c47 Routine update #273
+  aa62762 Routine update #272
+  f5ddbea Routine update #271
+  2120217 Routine update #270
+  31820c9 Routine update #269
+  92fa8cf Routine update #268
+  cfd3f85 Routine update #267
+  c445bce Routine update #266
+  ef72333 Routine update #265
+  005278a Routine update #264
+  17ae81d Routine update #263
+  4d1f40b Routine update #262
+  0f389d4 Routine update #261
+  8fb5ba9 Routine update #260
+  bcf8626 Routine update #259
+  97e570d Routine update #258
+  4df46ff Routine update #257
+  f3fa389 Routine update #256
+  :
+  ```
+- The above shows these 2 commits:
+  - `18f8435 Remove secret chunk 3 file (history-only)`
+  - `79af115 Add secret chunk 3 (base64) [commit 279]`
+  This means a file containing the secret chunk 3 was added in commit `79af115` and then removed in `18f8435` but it still exists in the Git history.
+- `git log --oneline --grep="secret chunk"` to check if multiple parts that need to be combined exist.
+  ```sh
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % git log --oneline | grep -i secret
+  18f8435 Remove secret chunk 3 file (history-only)
+  79af115 Add secret chunk 3 (base64) [commit 279]
+  977d650 Remove secret chunk 2 file (history-only)
+  cc8b79a Add secret chunk 2 (base64) [commit 122]
+  86fdefa Remove secret chunk 1 file (history-only)
+  50474f3 Add secret chunk 1 (base64) [commit 56]
+  ```
+  3 secret chunks that need to be combined to get the flag were added and removed.
+- `git show 50474f3`, `git show cc8b79a` and `git show 79af115` exctracts each of the 3 chunks.
+  ```sh
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % git show 50474f3
+  commit 50474f316ba2ff644b546437a032971874f43ecf
+  Author: Thomas Bangalter <thomas@daftpunk.com>
+  Date:   Fri Apr 4 11:06:26 2025 +0530
+
+    Add secret chunk 1 (base64) [commit 56]
+
+  diff --git a/secret_chunk_1.b64 b/secret_chunk_1.b64
+  new file mode 100644
+  index 0000000..815a643
+  --- /dev/null
+  +++ b/secret_chunk_1.b64
+  @@ -0,0 +1,2 @@
+  +# secret piece 1
+  +Y2l0YWRlbHt3M180cjM=
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % git show cc8b79a
+  commit cc8b79a83c2ef5997c728d1037368042af85214f
+  Author: Abel Tesfaya <abel@weeknd.com>
+  Date:   Sat May 10 07:03:11 2025 +0530
+
+    Add secret chunk 2 (base64) [commit 122]
+  diff --git a/secret_chunk_2.b64 b/secret_chunk_2.b64
+  new file mode 100644
+  index 0000000..6199d9c
+  --- /dev/null
+  +++ b/secret_chunk_2.b64
+  @@ -0,0 +1,2 @@
+  +# secret piece 2
+  +X3VwXzRsbF9uMXQzXw==
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % git show 79af115
+  commit 79af115d8b2cef0f3110f21f5475e1b5bea1a0af
+  Author: Julian Casablacasn <julian@thestrokes.com>
+  Date:   Wed Apr 16 20:18:52 2025 +0530
+
+    Add secret chunk 3 (base64) [commit 279]
+  diff --git a/secret_chunk_3.b64 b/secret_chunk_3.b64
+  new file mode 100644
+  index 0000000..46cced2
+  --- /dev/null
+  +++ b/secret_chunk_3.b64
+  @@ -0,0 +1,2 @@
+  +# secret piece 3
+  +dDBfZzF0X2x1Y2t5fQ==
+  nehanandini@Nehas-MacBook-Air daft-punk-archive %
+  ```
+- The 3 are base64 chunks and need to be decoded and combined to give the flag.
+- `echo "Y2l0YWRlbHt3M180cjM=" | base64 -d`, `echo "X3VwXzRsbF9uMXQzXw==" | base64 -d` and `echo "dDBfZzF0X2x1Y2t5fQ==" | base64 -d` gives the parts of the flag.
+  ```sh
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % echo "Y2l0YWRlbHt3M180cjM=" | base64 -d
+  citadel{w3_4r3%
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % echo "X3VwXzRsbF9uMXQzXw==" | base64 -d
+  _up_4ll_n1t3_%
+  nehanandini@Nehas-MacBook-Air daft-punk-archive % echo "dDBfZzF0X2x1Y2t5fQ==" | base64 -d
+  t0_g1t_lucky}%   
+  ```
+- Combine the 3 parts to get the full flag.
+
+### Flag: 
+
+```
+citadel{w3_4r3_up_4ll_n1t3_t0_g1t_lucky}
+```
+
+
 # XOR Slide 
 
 ## Description 
