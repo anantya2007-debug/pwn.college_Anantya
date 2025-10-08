@@ -124,10 +124,12 @@ Sometimes, misbehaving processes can interfere with your work. These processes m
 In this challenge, there's a decoy process that's hogging a critical resource - a named pipe (FIFO) at ```/tmp/flag_fifo``` into which (like in the Practicing Piping FIFO challenge) ```/challenge/run``` wants to write your flag. You need to ```kill``` this process.
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{kl2eJVRjpWdQ2OtqeHWTyQjIZb1.0FNzMDOxwCN3kjNzEzW}'
+
+The user has to use ```ps aux``` to get the ```PID``` of ```/challenge/decoy```. Then use the command ```kill 142``` where ```142``` is the ```PID``` of ```/challenge/decoy```. Run ```/challenge/run``` to send the flag to ```/tmp/flag_fifo``` and then ```cat /tmp/flag_fifo``` to retrieve the flag. 
 
 ### New Learnings 
-
+- ```kill``` command is used to terminate a process. The syntax of it is ```kill <PID>```
 
 ### References 
 None.
