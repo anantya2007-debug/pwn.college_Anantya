@@ -261,9 +261,15 @@ hacker@dojo:~$
 As you can see, commands that succeed typically return ```0``` and commands that fail typically return a non-zero value, most commonly ```1``` but sometimes an error code that identifies a specific failure mode.
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{oJ2wVIUJIXj_31aVHIW6ZCHJDa9.QX5YDO1wCN3kjNzEzW}'
+
+The user must run ```/challenge/get-code``` and has to immedietely get the exit code by running ```echo $?```. They can then run ```/challenge/submit-code 225```, where ```225``` is the exit code previously obtained, to retrieve the flag.
 
 ### New Learnings 
+- ```?``` variable can be used to access the exit code of the most recently terminated command
+- It has to be used with ```$``` as ```$?```
+- When a command succeeds, it returns ```0```
+- When the command fails, it returns a non-zero value, which is typically ```1```
 
 
 ### References 
