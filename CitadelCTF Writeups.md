@@ -89,6 +89,20 @@ Flag format: citadel{XX.XXX_XXX.XXX}
 
 ## Writeup 
 - To get this flag, we have to find the coordinates of the place in the given picture below.
+  <img width="1151" height="471" alt="Screenshot 2025-10-08 at 9 08 42 AM" src="https://github.com/user-attachments/assets/37545eab-d39f-496d-a5a4-851d3b1326c7" />
+- Using the hint, " The view of the temple streets to the north of Mount Fuji 🗻  offers a splendid sight, doesn’t it? ", we realise that the mountain in the back is Mt. Fuji.
+- From the compass at the bottom, it is seen that Mt. Fuji is to the south of the temple, which means we have to search for temples to the north of Mt. Fuji.
+
+  <img width="1436" height="871" alt="Screenshot 2025-10-08 at 9 17 00 AM" src="https://github.com/user-attachments/assets/0eb4c170-2e07-46af-bfa5-868882f45d83" />
+
 
   <img width="1010" height="486" alt="Screenshot 2025-10-08 at 9 03 51 AM" src="https://github.com/user-attachments/assets/7b0ec8d7-f7bb-48cc-8be6-8076492f2941" />
+
+- After this, we get the coordinates of the place, and when rounded off, we get the flag.
+
+### Coordinate: 
+```- 35.4856897, 138.6987448```
+
+### Flag: 
+```citadel{35.486_138.699}```
 
