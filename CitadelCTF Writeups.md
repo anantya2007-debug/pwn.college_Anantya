@@ -800,6 +800,128 @@ Challenge: https://databaseincursion.citadel.cryptonitemit.in
 citadel{wh3n_w1ll_y0u_f1nd_0u7_1f_175_5ql_0r_53qu3l?}
 ```
 
+# BRATCHA
+
+## Description 
+
+A clear chime rolls through the chamber and a new crest ignites on your badge – a quiet promotion. The outer ring is behind you. From here, the Citadel opens its inner systems, and the locks grow heavier because the keys are worth more. Your answers now carry more weight – and earn more in return. The citadel welcomes you to the inner climb.
+
+Near the gate to the next floor you come across a CAPTCHA verification test, but it has been covered by scratches on the decaying wall and misleading letters stopping you from finding the correct key, all to prove you’re human.
+
+## Writeup
+
+- The image given below is given in the challenge.
+
+  <img width="1440" height="1898" alt="image" src="https://github.com/user-attachments/assets/9f614a65-1e6b-491b-9021-6dccd96ed829" />
+
+- Letters are overlapping each other in the link.
+  pastebin.com/_ _ _ _ _ _ _ _
+  1 - s or c
+  2 - g or q
+  3 - x or y
+  4- h or n
+  5 - x or v
+  6 - B or D
+  7 - h or n
+  8 - Z or S
+- There are a total of 2^8 combinations so a code is required.
+- 1st attempt:
+  ```sh
+  import requests
+  import itertools
+
+  chars = [ ['s', 'c'], ['g', 'q'], ['x', 'y'], ['h', 'n'], ['x', 'v'], ['B', 'D'], ['h', 'n'], ['Z', 'S']]
+
+  for combo in itertools.product(*chars):
+      code = ''.join(combo)
+      url = f"https://pastebin.com/raw/{code}"
+      r = requests.get(url)
+      if r.status_code == 200:
+          print(f"Found: {code}")
+          print("Content:")
+          print(r.text)
+          break
+  ```
+- The 1st attempt's code results in:
+  ```sh
+  nehanandini@Nehas-MacBook-Air ~ % /opt/homebrew/bin/python3 /Users/nehanandini/Downloads/testflag.py
+  Traceback (most recent call last):
+    File "/Users/nehanandini/Downloads/testflag.py", line 1, in <module>
+      import requests
+  ModuleNotFoundError: No module named 'requests'
+  ```
+- Either install `requests` or use `urlllib` which is inbuilt.
+- Going with 2nd option, 2nd attempt:
+  ```sh
+  import urllib.request
+  import itertools
+
+  chars = [ ['s', 'c'], ['g', 'q'], ['x', 'y'], ['h', 'n'], ['x', 'v'], ['B', 'D'], ['h', 'n'], ['Z', 'S']]
+
+  for combo in itertools.product(*chars):
+      code = ''.join(combo)
+      url = f"https://pastebin.com/raw/{code}"
+      try:
+          with urllib.request.urlopen(url) as response:
+              if response.getcode() == 200:
+                  content = response.read().decode('utf-8')
+                  print(f"Found: {code}")
+                  print("Content:")
+                  print(content)
+                  break
+      except:
+          pass
+  ```
+  The above runs but isnt producing any output. Either its trying all combinations and none are valid or its running way too slow.
+- 3rd attempt:
+  ```sh
+  import urllib.request
+  import itertools
+
+  chars = [ ['s', 'c'], ['g', 'q'], ['x', 'y'], ['h', 'n'], ['x', 'v'], ['B', 'D'], ['h', 'n'], ['Z', 'S']]
+
+  count = 0
+  total = 2**8  # 256 combinations
+
+  for combo in itertools.product(*chars):
+      count += 1
+      code = ''.join(combo)
+      url = f"https://pastebin.com/raw/{code}"
+    
+      if count % 10 == 0:
+          print(f"Trying {count}/{total}: {code}")
+    
+      try:
+          with urllib.request.urlopen(url, timeout=5) as response:
+              if response.getcode() == 200:
+                  content = response.read().decode('utf-8')
+                  print(f"Found: {code}")
+                  print("Content:")
+                  print(content)
+                  break
+      except Exception as e:
+          pass
+
+  print("Search completed.")
+  ```
+- The 3rd attempt's code results in printing which combination it was and the flag.
+  ```sh
+  nehanandini@Nehas-MacBook-Air ~ % /opt/homebrew/bin/python3 /Users/nehanandini/Downloads/testflag.py
+  Found: sqxnxBhZ
+  Content:
+  Congrats!
+  You've proven you're human.
+
+  Here's your flag:
+  citadel{1m_3v3rywh3r3_1m_s0_jul1a}?
+  ```
+
+### Flag: 
+
+```
+citadel{1m_3v3rywh3r3_1m_s0_jul1a}
+```
+ 
  # A Memory's a Heavy Burden 
 
  ## Despcription 
@@ -829,4 +951,26 @@ Flag format: citadel{XX.XXX_XXX.XXX}
 
 ### Flag: 
 ```citadel{35.486_138.699}```
+
+# Case Sensitivity
+
+## Description 
+You step into a constricted floor where every movement and operation is limited. Commands are few, space is tight, and options are restricted.
+
+A guardian looms over the floor, its body shifting like liquid metal, enforcing these constraints. It watches your every move, daring you to make do with what you have and uncover the passcode to the next floor despite the restrictions.
+
+Connection: `nc chall_citadel.cryptonitemit.in 32770`
+
+## Writeup 
+
+- The following is shown once `nc chall_citadel.cryptonitemit.in 32770` is run in the terminal.
+
+  <img width="1130" height="112" alt="image" src="https://github.com/user-attachments/assets/9741500e-bb12-46c0-b47a-99ffabf61de1" />
+
+
+### Flag: 
+
+```
+citadel{d34th_d035_n07_fr33_y0u_fr0m_7h3_gu17ar15t}
+```
 
