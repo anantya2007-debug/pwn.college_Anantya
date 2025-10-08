@@ -1,3 +1,35 @@
+# Zahard's Welcome
+
+## Description 
+The base of Citadel rises before you, its great doors sealed with fractured steel and dead circuitry. Faded corporate protocols still hum in the lock, relics of the world that fell.
+
+Those who came before tried to climb but all failed. Their echoes linger as fragments of voices, reminders of broken attempts to free humanity. Now you have chosen to take their place. You will be the one to scale the Citadel and finish what they could not.
+
+The voices of the fallen whisper through the static: "The path begins in the gathering place. There, candidates are chosen". Here is your invitation.
+
+Step into the gathering place where all climbers are briefed before the ascent.
+
+## Writeup 
+This challenge was a nice welcome. It said to go where "all climbers were briefed before the ascent" and I remembered that all participants were asked to join the discord server. I checked the official channels and found the flag hiding at the top of the rules section.
+
+### Flag:
+```citadel{7h3_c174d3l_b3ck0n5}```
+
+# The social network 
+
+## Description 
+🗼OSINT pt1: The ascent begins. The first floor is not metal or binaries but of memory. Among the echoes, one voice lingers, of an early climber. He was among the earliest to challenge the Citadel, and though he failed, his traces remain scattered across the ruins of the old world.
+
+It is said that the key to the next floor can be found by tracing the socials of this legendary climber.
+
+Start by checking out citadweller on Instagram.
+
+## Writeup 
+The description gave me the first instruction which was to stalk the citadweller on instagram. After finding the account, I noticed the highlight on the page and opened it to find the first part of the flag and another instruction. That clue led me to the citadweller's X account which gave me the second part of the flag.
+
+### Flag: 
+```citadel{17_1s_jus7_7h3_b3g1nn1ng}```
+
 # Omniscient Flag's Metadata
 
 ## Description 
@@ -225,6 +257,51 @@ They leave nothing but a single image, a relic carrying his final secret. Hidden
 ```
 citadel{th1s_ch4ll3ng3_1s_f0r_th4t_0n3_ex1ft00l_4nd_b1nw4lk_enthus14st}
 ```
+
+# track 8
+
+## Description 
+Bypassing the second chamber leads to an empty floor except for a single artifact in the center: an old MP3 player, scratched and worn. On its surface, a cipher is etched, a message left behind for anyone who can decode it
+
+`twj eys zpr ukm 'viamnwqw' bx lzgo: esmqqui{yyr_oshwwcm_bwupa}`
+
+When you power it on, the sound fills the chamber. The tracks play like whispers from a lost world, and you recognize it as a song from Panchiko’s latest studio album, particularly track no. 8. Its title feels familiar, hinting at a famous cipher. Decrypt it by using the album name as your key and continue your ascent.
+
+## Writeup 
+The clue from the description was to look at Panchiko's latest album: Ginkgo. We had to particularly look at track 8 which was "Vinegar". Now I didn't know what cipher vinegar was supposed to hint at so I just googled "Vinegar cipher" only to find out that the cipher I was supposed to use was "Vinegere". After I realized that, I realized I could find an online decoder tool and, as the description said, use "Gingko" as my key. It turned out that the decoded text tossed me another challenge to decipher the flag using the same cipher but with "Panchiko" as the key. After decoding the vinegere cipher twice, I got the flag. 
+
+### Flag: 
+```citadel{add_vinegar_twice}```
+
+# Test of Sweetness 
+
+## Description 
+This floor feels like a digital world. The space is an illusion, all pink and sweet, stretching around you in impossible patterns. Here, you are no longer a climber but just another user.
+
+Ahead, a door glows faintly. It is the only path forward and requires a level of authority you do not yet have. Fragments of session memory flicker, hinting at what it might take to gain higher access.
+
+## Writeup 
+We have to open a website and become the admin to get the flag. By changing the user to admin, we can get the flag. 
+
+### Flag:
+```citadel{fru1tc4k3_4nd_c00k13s}```
+
+# Rotten Apple
+
+## Description 
+Among the debris of this floor, you find a relic of sound: An album which turns out to be D>E>A>T>H>M>E>T>A>L by Panchiko, a long lost album. But the music is warped, as though it has undergone disc rot.
+
+The path forward is hidden in the distortion. Similar to how the album was warped, the password to the next floor has been warped first by a factor of 47, then by a factor of 13. Untangle these changes to reveal the code and continue your ascent.
+
+## Writeup 
+The challenge description hinted at two layers of transformation: first ROT47, then ROT13. Since ROT13 is its own inverse, I could undo that part immediately. Taking the given string and running it through ROT13 gave me:
+
+`4:E256=L3bEEbC0#~%Eb?N`
+
+Then I applied ROT47 (because it's also its own inverse), which rotates all printable ASCII characters by 47 positions. That final decoding revealed the flag.
+
+### Flag:
+```citadel{b3tt3r_ROTt3n}```
 
 # Randomly Accessed Memories
 
