@@ -478,6 +478,21 @@ Challenge: https://github.com/evilcryptonite/daft-punk-archive
 citadel{w3_4r3_up_4ll_n1t3_t0_g1t_lucky}
 ```
 
+# Selected Ambient Work
+
+## Description 
+The symphonic adventure does not end here. On the next floor, a single song keeps echoing through the floor, repeating in a haunting loop. Amid the sound, you find a note left by a past candidate. It hints that the song holds a secret message, hidden in plain sight, much like how Aphex Twin concealed his face within his music with the help of spectrograms.
+
+To move forward, you must find the message hidden in this sound.
+
+Note: Separate the words in the flag with _ and make it UPPERCASE. Example: citadel{S3L3CT3D_AMB13NT_W0RK}
+
+## Writeup 
+This challenge produced a .wav file that had a bunch of ambient noise with a clear message: a bunch of morse code bleeps. However, I couldn't just run it through a morse translator because of the ambient music. So I used a spectogram tool to find out which frequencies the morse code tones were producing. This part was kind of cool because I could see the morse patterns in the audio waves. Technically, if I was experienced enough, I could've used the patterns to decode the message but that would've taken too long as the audio was over a minute long. So, I used an equalizer to isolate the morse code sounds and ran the filtered audio through a translator. It turns out the message was a bunch of information about Richard David James but there was one part of the message that didn't look like it belonged: "1 LOV3 1DM". That looked suspicious so I tried that out as the flag, and it worked.
+
+### Flag:
+```citadel{1_LOV3_1DM}```
+
 # Coco Conjecture
 
 ## Description 
