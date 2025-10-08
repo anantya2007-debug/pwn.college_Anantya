@@ -7,6 +7,7 @@ You realise that a previous climber has set up a puzzle in what was otherwise an
 - The provided text is encrypted with sliding XOR
   Ecrypted cipher text:
   ```b31113bd631c7207ec9587b32e686c8b6df255d66f4a987adacf6c283875ded5d1633b5f8823fa0b9bbbfab3195f1a51506afd54e03392ae338d872445c9025d88c8d4425a00a9b4478f86acadbd781df6a4194e376c09145a6f9afcbe02d36b5709f74d910edf94552dc4680041d6717fea824718c21385bdfd6176f722100548336d10ead87f01a95c5497dcb6c2```
+  
 - The following code is used to decipher and get the flag 
 
 ```bash
@@ -64,3 +65,12 @@ for i in range(len(flag) - len(ks) + 1):
 
 print(flag.decode(errors='replace'))
 ```
+
+### Output:
+```bash
+ks: d1b21fe19736267cfc6a57750db72a154aaad8ac4254989cf4f6921e0ef67aa70abfd6e2761402b88cdd21baf4e2dce87834d55729199d8c6b1d974413fc7c05fc5bec533a142c4fb775347dee44233dd30bd212d33b5461a966dd529af15af6ba2af99337f6515046dde44cc0382d252a783acc550237d4bd30b62afce905d45c3074fd
+bro i have a cRAzy story to tell you i went to ant4rctica and BOOM i saw a random citadel{pyr4m1d+x0r} it was crazy like how did it get there??
+```
+
+### Flag:
+ ```citadel{pyr4m1d+x0r}```
