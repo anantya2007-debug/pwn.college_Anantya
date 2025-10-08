@@ -74,3 +74,21 @@ bro i have a cRAzy story to tell you i went to ant4rctica and BOOM i saw a rando
 
 ### Flag:
  ```citadel{pyr4m1d+x0r}```
+
+
+ # A Memory's a Heavy Burden 
+
+ ## Despcription 
+ You now find yourself in the place where many climbers have been laid to rest. A cold wind moves through the temple grounds, carrying whispers of the departed. Stone lanterns and marble graves reflect Buddhist traditions, their shadows stretching across the frost-covered earth.
+
+The temple rests in the shadow of a very iconic mountain, quiet and imposing. Every detail in the image, the arrangement of the graves, the lanterns, and the lingering scent of incense, holds clues to its true location. You need to uncover the exact coordinates of where you are to move on from here.
+
+Note: round off coordinates to 3 decimal places.
+
+Flag format: citadel{XX.XXX_XXX.XXX}
+
+## Writeup 
+- To get this flag, we have to find the coordinates of the place in the given picture below.
+
+  <img width="1010" height="486" alt="Screenshot 2025-10-08 at 9 03 51 AM" src="https://github.com/user-attachments/assets/7b0ec8d7-f7bb-48cc-8be6-8076492f2941" />
+
