@@ -20,6 +20,39 @@ hacker@dojo:~$
 ```
 This check against the ```root``` password is what obsoletes ```su```. Modern systems very rarely have ```root``` passwords, and different mechanisms (that we will learn later) are used to grant administrative access.
 
+### My Solve 
+**Flag:**  
+
+### New Learnings 
+
+### References 
+None.
+
 ## Challenge 2: Other users with su 
+### My Solve 
+**Flag:**  
+
+### New Learnings 
+
+### References 
+None.
+
 ## Challenge 3: Cracking passwords 
+
+### My Solve 
+**Flag:**  
+
+### New Learnings 
+
+### References 
+None.
+
 ## Challenge 4: Using sudo 
+
+### My Solve 
+**Flag:**  
+
+### New Learnings 
+
+### References 
+None.
