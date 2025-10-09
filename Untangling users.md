@@ -139,7 +139,9 @@ Unlike ```su```, which relies on password authentication, ```sudo``` checks poli
 So, the world has moved to ```sudo``` and has (for the purposes of system administration) left ```su``` behind. In fact, even pwn.college's Practice Mode works by giving you ```sudo``` access to elevate privileges!
 
 ### My Solve 
-**Flag:**  
+**Flag:** 'pwn.college{EnLHCKwxEX_jesH1aVEjWDyuliz.QX4UDN1wCN3kjNzEzW}'
+
+The user must use the command ```sudo cat /flag``` to retrieve the flag. 
 
 ### New Learnings 
 - ```sudo``` checks policies to determine whether the user is authorized to run commands as ```root```
