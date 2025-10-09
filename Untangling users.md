@@ -104,12 +104,14 @@ hacker@dojo:~$
 Here, John the Ripper cracked Zardus' leaked password hash to find the real value of ```password1337```. Poor Zardus!
 
 ### My Solve 
-**Flag:**  
+**Flag:**  'pwn.college{c6AdDXZLCw6oNHfoDCDsIvUF6_-.QX3UDN1wCN3kjNzEzW}'
+
+The user has to input ```john /challenge/shadow-leak``` to get the password for ```zardus```. They can then use this password to ```su zardus``` and then run ```/challenge/run``` to retrieve the flag.
 
 ### New Learnings
 - The user passwords are stored in ```/etc/shadow```
 - A value of ```*``` or ```!``` functionally means that password login for the account is disabled
-- a blank field means that there is no password
+- A blank field means that there is no password
 - ```su``` stands for "substitute user"
 
 ### References 
