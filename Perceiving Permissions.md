@@ -141,7 +141,7 @@ None.
 
 ## Challenge 4: Changing Permissions 
 So now we're well-versed in ownership. Let's talk about the other side of the coin: file permissions. Recall our example:
-
+```bash
 hacker@dojo:~$ mkdir pwn_directory
 hacker@dojo:~$ touch college_file
 hacker@dojo:~$ ls -l
@@ -149,52 +149,57 @@ total 4
 -rw-r--r-- 1 hacker hacker    0 May 22 13:42 college_file
 drwxr-xr-x 2 hacker hacker 4096 May 22 13:42 pwn_directory
 hacker@dojo:~$
+```
 As a reminder, the first character there is the file type. The next nine characters are the actual access permissions of the file or directory, split into 3 characters denoting permissions for the owning user (now you understand this!), 3 characters denoting the permissions for the owning group (now you understand this as well!), and 3 characters denoting the permissions that all other access (e.g., by other users and other groups) has to the file.
 
 Each character of the three represent permission for a different type:
-
+```bash
 r - user/group/other can read the file (or list the directory)
 w - user/group/other can modify the files (or create/delete files in the directory)
 x - user/group/other can execute the file as a program (or can enter the directory, e.g., using `cd`)
-- - nothing 
-For college_file above, the rw-r--r-- permissions entry decodes to:
+- - nothing
+```
+For ```college_file``` above, the ```rw-r--r--``` permissions entry decodes to:
 
-r: the user that owns the file (user hacker) can read it
-w: the user that owns the file (user hacker) can write to it
--: the user that owns the file (user hacker) cannot execute it
-r: users in the group that owns the file (group hacker) can read it
--: users in the group that owns the file (group hacker) cannot write to it
--: users in the group that owns the file (group hacker) cannot execute it
-r: all other users can read it
--: all other users cannot write to it
--: all other users cannot execute it
-Now, let's look at the default permissions of /flag:
-
+- r: the user that owns the file (user hacker) can read it
+- w: the user that owns the file (user hacker) can write to it
+- -: the user that owns the file (user hacker) cannot execute it
+- r: users in the group that owns the file (group hacker) can read it
+- -: users in the group that owns the file (group hacker) cannot write to it
+- -: users in the group that owns the file (group hacker) cannot execute it
+- r: all other users can read it
+- -: all other users cannot write to it
+- -: all other users cannot execute it
+Now, let's look at the default permissions of ```/flag```:
+```bash
 hacker@dojo:~$ ls -l /flag
 -r-------- 1 root root 53 Jul  4 04:47 /flag
 hacker@dojo:~$
-Here, there is only one bit set: the read permission for the owning user (in this case, root). Members of the owning group (the root group) and all other users have no access to the file.
+```
+Here, there is only one bit set: the read permission for the owning user (in this case, root). Members of the owning group (the ```root``` group) and all other users have no access to the file.
 
-You might be wondering how the chgrp levels worked, if there is no group access to the file. Well, for those levels, I set the permissions differently:
-
+You might be wondering how the ```chgrp``` levels worked, if there is no group access to the file. Well, for those levels, I set the permissions differently:
+```bash
 hacker@dojo:~$ ls -l /flag
 -r--r----- 1 root root 53 Jul  4 04:47 /flag
 hacker@dojo:~$
-The group had access! That is why chgrping the file enabled you to read the file.
+```
+The group had access! That is why  ```chgrp```ing the file enabled you to read the file.
 
-Anyways! Like ownership, file permissions can also be changed. This is done with the chmod (change mode) command. The basic usage for chmod is:
-
+Anyways! Like ownership, file permissions can also be changed. This is done with the ```chmod``` (change mode) command. The basic usage for ```chmod``` is:
+```bash
 chmod [OPTIONS] MODE FILE
-You can specify the MODE in two ways: as a modification of the existing permissions mode, or as a completely new mode to overwrite the old one.
+```
+You can specify the ```MODE``` in two ways: as a modification of the existing permissions mode, or as a completely new mode to overwrite the old one.
 
-In this level, we will cover the former: modifying an existing mode. chmod allows you to tweak permissions with the mode format of WHO+/-WHAT, where WHO is user/group/other and WHAT is read/write/execute. For example, to add read access for the owning user, you would specify a mode of u+r. write and execute access for the group and the other (or all the modes) are specified the same way. More examples:
+In this level, we will cover the former: modifying an existing mode. ```chmod``` allows you to tweak permissions with the mode format of ```WHO```+/-```WHAT```, where ```WHO``` is user/group/other and ```WHAT``` is read/write/execute. For example, to add read access for the owning user, you would specify a mode of ```u+r```. write and execute access for the group and the other (or all the modes) are specified the same way. More examples:
 
-u+r, as above, adds read access to the user's permissions
-g+wx adds write and execute access to the group's permissions
-o-w removes write access for other users
-a-rwx removes all permissions for the user, group, and world
+- ```u+r```, as above, adds read access to the user's permissions
+- ```g+wx``` adds write and execute access to the group's permissions
+- ```o-w``` removes write access for other users
+- ```a-rwx``` removes all permissions for the user, group, and world
 So:
-
+```bash
 root@dojo:~# mkdir pwn_directory
 root@dojo:~# touch college_file
 root@dojo:~# ls -l
@@ -207,31 +212,86 @@ total 4
 -rw------- 1 hacker root    0 May 22 13:42 college_file
 drwx------ 2 root   root 4096 May 22 13:42 pwn_directory
 root@dojo:~#
+```
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{sm-sL86wPHSLgVGtx6Xv23tRQuk.QXzcjM1wCN3kjNzEzW}'
+
+The user has to input ```chmod a+rwx /flag``` to change the permissions and then will be able to  ```cat /flag``` to retrieve the flag. 
 
 ### New Learnings 
+- Each character of the three represent permission for a different type:
+```bash
+r - user/group/other can read the file (or list the directory)
+w - user/group/other can modify the files (or create/delete files in the directory)
+x - user/group/other can execute the file as a program (or can enter the directory, e.g., using `cd`)
+- - nothing
+```
+- ```chmod``` (change mode) command is used to change file permissions
+-  ```chmod``` uses letters to represent who you’re changing permissions for
+  ```bash
+u - user
+g - group
+o - other
+a - all
+```
 
 ### References 
 None.
 
 ## Challenge 5: Executable Files 
+So far, you have mostly been dealing with read permissions. This makes sense, because you have been making the ```/flag``` file readable to read it. In this level, we will explore execute permissions.
+
+When you invoke a program, such as ```/challenge/run```, Linux will only actually execute it if you have execute-access to the program file. Consider:
+```bash
+hacker@dojo:~$ ls -l /challenge/run
+-rwxr-xr-x 1 root root    0 May 22 13:42 /challenge/run
+hacker@dojo:~$ /challenge/run
+Successfully ran the challenge!
+hacker@dojo:~$
+```
+In this case, ```/challenge/run``` runs because it is executable by the ```hacker``` user. Because the file is owned by the ```root``` user and ```root``` group, this requires that the execute bit is set on the other permissions. If we remove these permissions, the execution will fail!
+```bash
+hacker@dojo:~$ chmod o-x /challenge/run
+hacker@dojo:~$ ls -l /challenge/run
+-rwxr-xr-- 1 root root    0 May 22 13:42 /challenge/run
+hacker@dojo:~$ /challenge/run
+bash: /challenge/run: Permission denied
+hacker@dojo:~$
+````
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{s-FR_JIv8kFDObY0eWMKi1pJJK-.QXyEjN0wCN3kjNzEzW}' 
+
+The user must run ```chmod a+x /challenge/run``` to give all users the executing permission, after which they can run ```/challenge/run``` to retrieve the flag. 
 
 ### New Learnings 
-
+- a+x gives all users executing permission for the particular program
+  
 ### References 
 None.
 
 ## Challenge 6: Permission Tweaking Practice 
+You think you can ```chmod```? Let's practice!
+
+This challenge will ask you to change the permissions of the ```/challenge/pwn``` file in specific ways a few times in a row. If you get the permissions wrong, the game will reset and you can try again. If you get the permissions right eight times in a row, the challenge will let you ```chmod /flag``` to make it readable for yourself :-) Launch ```/challenge/run``` to get started!
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{c3ftKU_OcNDgOt2hTt4mDo7uUfw.QXwEjN0wCN3kjNzEzW}'
+
+The following commands must be given for each round, by the user, after which they can ``` chmod a+rwx /flag``` and ```cat /flag``` to retrieve the flag.
+1. chmod g-r /challenge/pwn
+2. chmod o-r /challenge/pwn
+3. chmod u+x,o+wx /challenge/pwn
+4. chmod o-x /challenge/pwn
+5. chmod g+w /challenge/pwn
+6. chmod g+x /challenge/pwn
+7. chmod o+x /challenge/pwn
+8. chmod u-x,o-x /challenge/pwn
 
 ### New Learnings 
+- ```+``` is used to give permissions
+- ```-``` is used to remove permissions
 
 ### References 
 None.
