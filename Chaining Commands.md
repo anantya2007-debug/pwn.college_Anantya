@@ -327,21 +327,62 @@ They can then run ```/challenge/run``` to get the flag.
 None.
 
 ## Challenge 11: Scripting with Multiple Conditions 
+You've learned how to use a single ```if``` statement to check a condition. But what if you need to check multiple conditions? You can use ```elif``` (short for ```else if```):
+```bash
+if [ "$1" == "one" ]
+then
+    echo "1"
+elif [ "$1" == "two" ]
+then
+    echo "2"
+elif [ "$1" == "three" ]
+then
+    echo "3"
+else
+    echo "unknown"
+fi
+```
+Note that you do need a ```then``` after the elif, just like the ```if```. As before the ```else``` at the end catches everything that didn't match.
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{AnJYRIZVO4KoK9TKFxFHsG8Z-Jf.0FOzMDOxwCN3kjNzEzW}'
+
+The user has to input
+```bash
+hacker@chaining~scripting-with-conditionals:~$ cat > /home/hacker/solve.sh <<'EOF'
+> #!/bin/bash
+if [ "$1" = "hack" ]; then
+  echo "the planet"
+elif [ "$1" = "pwn" ]; then
+  echo "college"
+elif [ "$1" = "learn" ]; then
+  echo "linux"
+else
+  echo "unknown"
+fi
+EOF
+```
+They can then run ```/challenge/run``` to get the flag.
 
 ### New Learnings
+- ```elif``` is the command used to carry out else-if statements
+- ```elif``` is followed by ```then```, unlike ```else```
 
 ### References 
 None.
 
 ## Challenge 12: Reading Shell Scripts 
+You're not the only one who writes shell scripts! They are very handy for doing simple "system-level" tasks, and are a common tool that developers and sysadmins reach for. In fact, a surprising fraction of the programs on a typical Linux machine are shell scripts.
+
+In this level, we will learn to read shell scripts. ```/challenge/run``` is a shell script that requires you to put in a secret password, but that password is hardcoded into the script iself! Read the script (using, say, ```cat```), figure out the password, and get the flag!
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{48ayZePNmiyj1crP7GpGU4YQxGJ.0lMwgDOxwCN3kjNzEzW}'
+
+The user must use the command ```cat /challenge/run``` to read the shell script from which they can get its password to print the flag. They can then run ```/challenge/run``` and input the password, which in this case is ```hack the PLANET```, to retrieve the flag. 
 
 ### New Learnings
+- ```cat``` can be used to read the script of a shell 
 
 ### References 
 None.
