@@ -107,9 +107,12 @@ Armed with your knowledge, you can now carry out some shenanigans. This challeng
 How can you solve this? You know that ```rm``` is searched for in the directories listed in the PATH variable. You have experience creating the ```win``` command when the previous challenge needed it. What else can you create?
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{Ef7PNvpjkXo-jHIKODtEw1WQnZH.QX3cjM1wCN3kjNzEzW}'
+
+The user must use the command ```mkdir ./random``` to create a directory after which they can use ``` echo '#!/bin/bash' > ./random/rm```. The file mus tthen be made executable by using ```chmod a+x ./random/rm``` followed by ```echo 'cat -- "$@"' >> ./random/rm```. They can then ```PATH="./random:$PATH"``` and run ```/challenge/run``` to retrieve the flag. 
 
 ### New Learnings
+- You can place decoy commands to trick the shell search into finding the wrong commands 
 
 ### References 
 None.
