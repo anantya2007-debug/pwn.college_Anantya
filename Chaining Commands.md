@@ -156,11 +156,19 @@ The user has to create a shell using the command ```touch x.sh``` and then run `
 None.
 
 ## Challenge 6: Executable Shell Scripts 
+You have written your first shell script, but calling it via ```bash script.sh``` is a pain. Why do you need that bash?
+
+When you invoke ```bash script.sh```, you are, of course launching the ```bash``` command with the ```script.sh``` argument. This tells ```bash``` to read its commands from ```script.sh``` instead of standard input, and thus your shell script is executed.
+
+It turns out that you can avoid the need to manually invoke ```bash```. If your shell script file is executable (recall ```File Permissions```), you can simply invoke it via its relative or absolute path! For example, if you create ```script.sh``` in your home directory and make it executable, you can invoke it via ```/home/hacker/script.sh``` or ```~/script.sh``` or (if your working directory is ```/home/hacker```) ```./script.sh```.
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{IproUSV4oyHDS3bdil_D9F3tm8m.QX0cjM1wCN3kjNzEzW}'
+
+The user must first create the shell and run the file in it by using the commands ```touch x.sh``` and ```echo /challenge/solve > x.sh```. Then, after modifying the file permissions using ```chmod a=rwx x.sh```, they can retrieve the flag with the command ``` ./x.sh```
 
 ### New Learnings
+- You can invoke a shell file by using its relative or absolute path. 
 
 ### References 
 None.
