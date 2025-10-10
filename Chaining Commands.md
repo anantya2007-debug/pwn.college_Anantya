@@ -261,19 +261,67 @@ fi
 The above, in English, is ```if the first argument is "ping", print out "pong"```. The syntax is somewhat unforgiving for a few reasons. First, you must have spaces after ```if``` (if you're used to a language like C, this is different), after ```[```, and before ```]```. Second, ```if```, ```then```, and ```fi``` must all be on different lines (or separated by semicolons); you can't lump them into the same statement. It's also a bit weird: instead of ```endif``` or ```end``` or something like that, the terminator of the ```if``` statement is ```fi``` (```if``` backwards). Just something you have to remember.
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{AmmcXCydJa-95pBiSTtVpk-Vjia.0lNzMDOxwCN3kjNzEzW}'
+
+The user has to input
+```bash
+hacker@chaining~scripting-with-conditionals:~$ cat > /home/hacker/solve.sh <<'EOF'
+> #!/bin/bash
+if [ "$1" = "pwn" ]; then
+  echo "college"
+fi
+EOF
+```
+They can then run ```/challenge/run``` to get the flag.
 
 ### New Learnings
+- ```if``` command can be used to implement conditional logic into your shell file 
 
 ### References 
 None.
 
 ## Challenge 10: Scripting with Default Cases 
+Your ```if``` statements so far have handled specific cases, but what about everything else? That's where ```else``` comes in!
+
+The ```else ```clause executes when the ```if``` condition is false:
+```bash
+if [ "$1" == "hello" ]
+then
+    echo "Hi there!"
+else
+    echo "I don't understand"
+fi
+```
+Note that the ```else``` doesn't have a condition --- it catches everything that didn't match previously. It also doesn't have a ```then``` statement. Finally, the ```fi``` goes after the ```else``` block to denote the end of the whole complex statement! It is also optional: you didn't have it in the previous level, and you only need it if the logic you're trying to achieve demands it.
+
+Here's a practical example:
+```bash
+if [ "$1" == "start" ]
+then
+    echo "Starting the service..."
+else
+    echo "Unknown command. Use 'start' to begin."
+fi
+```
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{Y0nzojringsdocC-Nkmf3bLR8at.01NzMDOxwCN3kjNzEzW}'
+
+The user has to input
+```bash
+hacker@chaining~scripting-with-conditionals:~$ cat > /home/hacker/solve.sh <<'EOF'
+> #!/bin/bash
+if [ "$1" = "pwn" ]; then
+  echo "college"
+else
+  echo "nope"
+fi
+EOF
+```
+They can then run ```/challenge/run``` to get the flag.
 
 ### New Learnings
+- ```else``` statements can be used for when the ```if``` condition is not satisfied
 
 ### References 
 None.
