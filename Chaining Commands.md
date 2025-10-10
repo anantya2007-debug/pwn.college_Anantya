@@ -197,9 +197,16 @@ When ```./script.sh``` was executed, Linux opened the file, read the first line,
 
 Note, the shebang line must be the VERY FIRST line of the file - no blank lines or spaces before it!
 
+FUN FACT: Common shebangs you might see:
+
+- ```#!/bin/bash``` for bash scripts
+- ```#!/usr/bin/python3``` for Python scripts
+- ```#!/bin/sh``` for POSIX shell scripts --- this is a more primitive predecessor to ```bash``` with fewer features, but more compatibility to non-Linux systems!
 
 ### My Solve 
-**Flag:**
+**Flag:** 'Flag: pwn.college{Ux4g3LLuPnrBV314ztMYeyahlcf.0VOzMDOxwCN3kjNzEzW}'
+
+The user must input the command ```cat > /home/hacker/solve.sh <<'EOF'``` to get input into ```/home/hacker/solve.sh```. They can then input ```#!/bin/bash``` and ```echo 'hack the planet'``` into it. After all of this is done, the user must use the commands ```chmod +x /home/hacker/solve.sh``` and ```/challenge/run``` to retrieve the flag. 
 
 ### New Learnings
 - If the program file starts with the characters #! (often termed a "shebang"), Linux treats the file as an interpreted program
@@ -208,16 +215,50 @@ Note, the shebang line must be the VERY FIRST line of the file - no blank lines 
 None.
 
 ## Challenge 8: Scripting with Arguments 
+You've learned how to make shell scripts, but so far they've just been lists of commands. Scripts become much more powerful when they can accept arguments! This might look like:
+```bash
+hacker@dojo:~$ bash myscript.sh hello world
+```
+The script can access these arguments using special variables:
+
+- ```$1``` contains the first argument ("hello")
+- ```$2``` contains the second argument ("world")
+- ```$3``` would contain the third argument (if there had been one)
+- ...and so on
+Here's a simple example:
+```bash
+hacker@dojo:~$ cat myscript.sh
+#!/bin/bash
+echo "First argument: $1"
+echo "Second argument: $2"
+hacker@dojo:~$ bash myscript.sh hello world
+First argument: hello
+Second argument: world
+hacker@dojo:~$
+```
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{wAmKI5Aeqr19_IKs5Kf3QaMYeEL.0VNzMDOxwCN3kjNzEzW}'
+
+The user has to input ```cat > /home/hacker/solve.sh <<'EOF'```, ``` #!/bin/bash``` and ```echo "$2 $1"```. They can now run ```/challenge/run``` which will print out the reversed arguments and return the flag to the user. 
 
 ### New Learnings
+- You can use ```$1```, ```$2``` and so on, to accept arguments in shell scripts
 
 ### References 
 None.
 
 ## Challenge 9: Scripting with Conditionals 
+Now that you can use arguments in scripts, let's make them smarter with conditional logic!
+
+In bash, you can use ```if``` statements to make decisions:
+```bash
+if [ "$1" == "ping" ]
+then
+    echo "pong"
+fi
+```
+The above, in English, is ```if the first argument is "ping", print out "pong"```. The syntax is somewhat unforgiving for a few reasons. First, you must have spaces after ```if``` (if you're used to a language like C, this is different), after ```[```, and before ```]```. Second, ```if```, ```then```, and ```fi``` must all be on different lines (or separated by semicolons); you can't lump them into the same statement. It's also a bit weird: instead of ```endif``` or ```end``` or something like that, the terminator of the ```if``` statement is ```fi``` (```if``` backwards). Just something you have to remember.
 
 ### My Solve 
 **Flag:**
