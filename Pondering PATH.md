@@ -91,14 +91,20 @@ hacker@dojo:~$
 What we see here, of course, is the ```hacker``` making the shell more useful for themselves by bringing their own commands to the party. Over time, you might amass your own elegant tools. Let's start with ```win```!
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{c0QPbpt6sNds0PwUm8mFelE81pi.QX2cjM1wCN3kjNzEzW}'
+
+The user must use the command ```mkdir /tmp/pwn``` to create a directory for their command. Then using ```cd /tmp/pwn```, ```echo "/bin/cat /flag" > win``` and ```chmod +x win```, the user can create the win shell script. They can then change the path ```PATH="/tmp/pwn:$PATH" /challenge/run``` to finally retrieve the flag. 
 
 ### New Learnings
+- You can add a new directory to a path rather than wiping and redefining it every time by using ```PATH="/new/directory:$PATH"```
 
 ### References 
 None.
 
 ## Challenge 5: Hijacking Commands 
+Armed with your knowledge, you can now carry out some shenanigans. This challenge is almost the same as the first challenge in this module. Again, this challenge will delete the flag using the ```rm``` command. But unlike before, it will not print anything out for you.
+
+How can you solve this? You know that ```rm``` is searched for in the directories listed in the PATH variable. You have experience creating the ```win``` command when the previous challenge needed it. What else can you create?
 
 ### My Solve 
 **Flag:**
