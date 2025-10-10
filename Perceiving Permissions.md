@@ -297,11 +297,39 @@ The following commands must be given for each round, by the user, after which th
 None.
 
 ## Challenge 7: Permissions Setting Practice 
+In addition to adding and removing permissions, as in the previous level, ```chmod``` can also simply set permissions altogether, overwriting the old ones. This is done by using ```=``` instead of ```-``` or ```+```. For example:
+
+- ```u=rw``` sets read and write permissions for the user, and wipes the execute permission
+- ```o=x``` sets only executable permissions for the world, wiping read and write
+- ```a=rwx``` sets read, write, and executable permissions for the user, group, and world!
+
+But what if you want to change user permissions in a different way as group permissions? Say, you want to set ```rw``` for the owning user, but only ```r``` for the owning group? You can achieve this by chaining multiple modes to ```chmod``` with ```,```!
+
+- ```chmod u=rw,g=r /challenge/pwn``` will set the user permissions to read and write, and the group permissions to read-only
+- ```chmod a=r,u=rw /challenge/pwn``` will set the user permissions to read and write, and the group and world permissions to read-only
+
+Additionally, you can zero out permissions with ```-```:
+
+- ```chmod u=rw,g=r,o=- /challenge/pwn``` will set the user permissions to read and write, the group permissions to read-only, and the world permissions to nothing at all
+Keep in mind, that ```-```, appearing after ```=``` is in a different context than if it appeared directly after the ```u```, ```g```, or ```o``` (in which case, it would cause specific bits to be removed, not everything).
 
 ### My Solve 
-**Flag:**
+**Flag:** 'pwn.college{0K0rKUNHOQwKt71qQYWd6tJuJbM.QXzETO0wCN3kjNzEzW}'
+
+The following commands must be given for each round, by the user, after which they can ``` chmod a+rwx /flag``` and ```cat /flag``` to retrieve the flag.
+1. chmod u=wx,g=w,o=rwx /challenge/pwn
+2. chmod g=r,o=wx /challenge/pwn
+3. chmod u=rx,g=wx,o=r /challenge/pwn
+4. chmod g=rwx,o=rx /challenge/pwn
+5. chmod u=-,g=rw,o=wx /challenge/pwn
+6. chmod u=x,g=w,o=x /challenge/pwn
+7. chmod u=r,g=wx,o=rw /challenge/pwn
+8. chmod u=w,o=w /challenge/pwn
 
 ### New Learnings 
+- ```=``` is used to set set ceratin specified permissions while wiping the rest of the away
+- ```,``` can be used to set different permissions for different users
+- Just ```=-``` after the user, removes all permissions of a user 
 
 ### References 
 None.
